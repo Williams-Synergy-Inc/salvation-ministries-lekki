@@ -34,6 +34,11 @@ const config = {
 			},
 			colors: {
 				"primary-blue": "#02498A",
+				"primary-gray": "#494949",
+			},
+			backgroundImage: {
+				"join-us":
+					"linear-gradient(180deg, #0155A2 0%, #003566 100%), url('/join-us-bg.png')",
 			},
 		},
 	},

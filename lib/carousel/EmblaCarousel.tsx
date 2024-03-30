@@ -50,7 +50,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 					{slides.map((item, index) => {
 						const { key, img } = item;
 						return (
-							<div key={index} className="embla__slide h-screen w-screen">
+							<div key={index} className="embla__slide max-h-screen w-screen">
 								<Image
 									id={`${key}`}
 									src={img}
