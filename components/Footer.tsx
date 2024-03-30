@@ -3,7 +3,7 @@ import React from "react";
 
 const Footer = () => {
 	return (
-		<div className="fixed bottom-0 bg-[#2F2F2F] flex flex-col items-center w-full p-5 pt-[40px] md:px-[40px] text-white">
+		<footer className="w-screen bottom-0 bg-[#2F2F2F] flex flex-col items-center p-5 pt-[40px] md:px-[40px] text-white">
 			<div className="flex flex-col md:flex-row md:justify-between items-center gap-10 md:gap-0 mb-10 w-full md:max-w-[1060px]">
 				<div className="flex justify-center items-center">
 					<Image src="/big-logo.svg" width={150} height={100} alt="logo" />
@@ -52,7 +52,7 @@ const Footer = () => {
 			<small className="text-center">
 				SALVATION MINISTRIES &copy; 2024. ALL RIGHTS RESERVED
 			</small>
-		</div>
+		</footer>
 	);
 };
 

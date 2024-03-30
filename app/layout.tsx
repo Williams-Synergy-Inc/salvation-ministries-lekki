@@ -18,12 +18,15 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={inter.className}>
-				<main className="w-screen overflow-hidden relative">
-					<Navbar />
-					{children}
-					<Footer />
-				</main>
+			<body
+				style={{
+					overflowX: "hidden",
+				}}
+				className={inter.className}
+			>
+				<Navbar />
+				<main className="overflow-hidden relative">{children}</main>
+				<Footer />
 			</body>
 		</html>
 	);

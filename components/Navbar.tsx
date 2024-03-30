@@ -10,7 +10,7 @@ import Link from "next/link";
 
 const Navbar = () => {
 	return (
-		<nav className="bg-[#CFD0D980] rounded-[8px] shadow-sm h-[60px] md:h-[77px] max-w-[90%] md:max-w-[85%] fixed top-8 left-1/2 transform -translate-x-1/2 w-full flex justify-center items-center">
+		<nav className="bg-[#CFD0D980] rounded-[8px] shadow-sm h-[60px] md:h-[77px] max-w-[90%] md:max-w-[85%] fixed top-8 left-1/2 transform -translate-x-1/2 w-full flex justify-center items-center z-10">
 			<div className="w-[90%] flex justify-between items-center">
 				<div>
 					<Image src="/logo.svg" width={80} height={40} alt="Logo" />
