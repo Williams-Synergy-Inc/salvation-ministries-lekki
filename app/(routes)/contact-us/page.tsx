@@ -59,23 +59,25 @@ const page = () => {
 				image={"/about_header.png"}
 			/>
 			<section className="px-5 sm:container max-w-[1062px] grid gap-10 items-center justify-center">
-				<div className="flex flex-col md:flex-row justify-center items-center text-center">
+				<div className="flex flex-col md:flex-row justify-center items-center text-center gap-[20px]">
 					<Image
 						src="/map.png"
 						width={400}
-						height={400}
+						height={300}
 						alt="map"
 						className="mb-10 md:mb-0"
 					/>
-					{contactUsData.map((_, index) => {
-						const { id, title, text } = _;
-						return (
-							<div key={`contact-${index}.${id}`} className="grid gap-2 mb-4">
-								<span className="font-bold ">{title}</span>
-								<span>{text}</span>
-							</div>
-						);
-					})}
+					<div>
+						{contactUsData.map((_, index) => {
+							const { id, title, text } = _;
+							return (
+								<div key={`contact-${index}.${id}`} className="grid gap-2 mb-4">
+									<span className="font-bold">{title}</span>
+									<span className="max-w-[250px]">{text}</span>
+								</div>
+							);
+						})}
+					</div>
 				</div>
 
 				<div className="text-center">
@@ -94,7 +96,7 @@ const page = () => {
 											<FormLabel className="sr-only">Name</FormLabel>
 											<FormControl>
 												<Input
-													className="bg-white h-[35px] placeholder:text-[#222222] md:placeholder:text-base w-full md:w-[320px] lg:w-380px lg:h-[45px] mx-auto"
+													className="bg-white h-[35px] placeholder:text-[#222222] md:placeholder:text-base w-full md:w-[320px] lg:w-[380px] lg:h-[45px] mx-auto"
 													placeholder="Name"
 													{...field}
 												/>
@@ -116,7 +118,7 @@ const page = () => {
 											<FormControl>
 												<Input
 													type="email"
-													className="bg-white h-[35px] placeholder:text-[#222222] md:placeholder:text-base w-full md:w-[320px] lg:w-380px lg:h-[45px] mx-auto"
+													className="bg-white h-[35px] placeholder:text-[#222222] md:placeholder:text-base w-full md:w-[320px] lg:w-[380px] lg:h-[45px] mx-auto"
 													placeholder="Name *"
 													{...field}
 												/>
@@ -136,7 +138,7 @@ const page = () => {
 											<FormLabel className="sr-only">Last Name</FormLabel>
 											<FormControl>
 												<Input
-													className="bg-white h-[35px] placeholder:text-[#222222] md:placeholder:text-base w-full md:w-[320px] lg:w-380px lg:h-[45px] mx-auto"
+													className="bg-white h-[35px] placeholder:text-[#222222] md:placeholder:text-base w-full md:w-[320px] lg:w-[380px] lg:h-[45px] mx-auto"
 													placeholder="City of Residence *"
 													{...field}
 												/>
@@ -171,7 +173,11 @@ const page = () => {
 								/>
 							</div>
 
-							<Button size={"lg"} type="submit" className="w-full">
+							<Button
+								size={"lg"}
+								type="submit"
+								className="w-full lg:w-[380px] mx-auto"
+							>
 								Submit
 							</Button>
 						</form>

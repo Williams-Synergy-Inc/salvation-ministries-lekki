@@ -47,21 +47,21 @@ const Navbar = () => {
 							<Image src="/menu.svg" width={25} height={25} alt="menu" />
 						</DropdownMenuTrigger>
 						<DropdownMenuContent>
-							<DropdownMenuItem>
-								<Link href="/">Home</Link>
-							</DropdownMenuItem>
-							<DropdownMenuItem>
-								<Link href="/">About</Link>
-							</DropdownMenuItem>
-							<DropdownMenuItem>
-								<Link href="/">Resources</Link>
-							</DropdownMenuItem>
-							<DropdownMenuItem>
-								<Link href="/">Contact Us</Link>
-							</DropdownMenuItem>
-							<DropdownMenuItem>
-								<Button variant="default">Service Form</Button>
-							</DropdownMenuItem>
+							{links.map((_, index) => {
+								const { id, title, link } = _;
+								return (
+									<DropdownMenuItem key={`link-${index}.${id}`}>
+										<Link
+											className={`text-black text-lg px-2 h-[25px] border-black hover:border-b-2 ${
+												pathname === link ? "border-b-2" : ""
+											}`}
+											href={link}
+										>
+											{title}
+										</Link>
+									</DropdownMenuItem>
+								);
+							})}
 						</DropdownMenuContent>
 					</DropdownMenu>
 				</div>
