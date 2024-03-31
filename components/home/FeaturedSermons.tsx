@@ -54,10 +54,10 @@ const FeaturedSermons = () => {
 	return (
 		<div className="flex flex-col text-center mb-[100px]">
 			<div className="mb-10">
-				<p className="text-[20px] md:text-[26px] lg:text-[28px] text-primary-blue font-bold leading-[26px] md:leading-8 sm:mb-3 uppercase">
+				<p className="text-[20px] md:text-[26px] lg:text-[28px] xl:text-[36px] text-primary-blue font-bold leading-[26px] md:leading-8 lg:leading-9 xl:leading-[43px]">
 					Featured sermons
 				</p>
-				<p className="text-primary-gray text-base max-w-[650px] mx-auto">
+				<p className="text-primary-gray text-base lg:text-xl xl:text-2xl max-w-[650px] mx-auto mb-5">
 					Take from our diverse array of selected sermons to strengthen your
 					spirit and indulge your thinking into the word of God.
 				</p>
@@ -67,8 +67,12 @@ const FeaturedSermons = () => {
 				{sermons.map((sermon, index) => {
 					const { img, title, by, link } = sermon;
 					return (
-						<Link href={link} key={index}>
-							<Card className="border-none shadow-none">
+						<Link
+							href={link}
+							key={index}
+							className="w-fit hover:scale-[1.01] transition-all"
+						>
+							<Card className="border-none shadow-none w-fit">
 								<CardHeader className="p-0 mb-2">
 									<Image src={img} width={300} height={230} alt={title} />
 								</CardHeader>

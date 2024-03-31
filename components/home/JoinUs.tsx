@@ -6,7 +6,7 @@ const JoinUs = () => {
 				<p className="text-[24px] md:text-[32px] text-white font-extrabold">
 					Join Us Today
 				</p>
-				<p className="text-base md:text-[22px] text-white max-w-[600px] mx-auto">
+				<p className="text-base md:text-[22px] md:leading-8 text-white max-w-[600px] mx-auto">
 					We exist to empower disciples, lead by example and change communities
 					for the better
 				</p>
