@@ -25,7 +25,9 @@ export default function RootLayout({
 				className={inter.className}
 			>
 				<Navbar />
-				<main className="overflow-hidden relative">{children}</main>
+            <main className="overflow-hidden relative">
+               {children}
+            </main>
 				<Footer />
 			</body>
 		</html>
