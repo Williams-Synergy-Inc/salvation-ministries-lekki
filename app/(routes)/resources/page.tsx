@@ -13,7 +13,7 @@ const page = () => {
 				image={"/resources_header.png"}
 			/>
 
-			<div className="flex flex-col justify-center items-center p-10 text-center">
+			<div className="flex flex-col justify-center items-center p-[60px] text-center">
 				<h1 className="text-5xl font-bold">COMING SOON</h1>
 				<p className="text-2xl">Explore our catalogue of books and sermons</p>
 			</div>
