@@ -37,13 +37,13 @@ const DailyWord = () => {
 	}
 	return (
 		<div className="w-screen h-screen bg-[url('/sign-up-bg.png')] bg-no-repeat bg-cover bg-center flex flex-col justify-center items-center text-center p-5 text-white">
-			<div className="grid gap-5">
+			<div className="flex flex-col gap-5">
 				<div className="grid gap-5">
-					<p className="text-[24px] md:text-[32px] lg:text-[28px] text-primary-yellow font-bold leading-[26px] md:leading-8">
+					<p className="text-[24px] md:text-[32px] lg:text-[32px] text-primary-yellow font-bold leading-[26px] md:leading-8">
 						Awaken Faith
 					</p>
-					<p className="text-base md:text-base">Today's Word: MAR 28, 2024</p>
-					<p className="text-xl md:text-2xl font-medium italic max-w-[650px] mx-auto">
+					<p className="text-base lg:text-xl">Today's Word: MAR 28, 2024</p>
+					<p className="text-xl md:text-2xl lg:text-3xl font-medium italic max-w-[650px] mx-auto">
 						We all face dreams and obstacles that seem too big for us, but God
 						has all the power in the world. The key is our faith. God works
 						through our faith. If you believe little, you’ll receive little. If
@@ -53,14 +53,17 @@ const DailyWord = () => {
 
 				<SelectSeparator />
 
-				<div className="grid gap-5">
-					<p className="text-base">
+				<div className="flex flex-col gap-5 justify-center items-center">
+					<p className="text-base lg:text-xl">
 						Have you signed up yet? Get your inspirational message in your inbox
 						every day.
 					</p>
 					<Form {...form}>
-						<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
-							<div className="grid md:flex md:space-x-5 md:space-y-0 space-y-3 md:justify-center">
+						<form
+							onSubmit={form.handleSubmit(onSubmit)}
+							className="space-y-5 w-[300px] md:w-full"
+						>
+							<div className="flex flex-col md:flex-row md:space-x-5 md:space-y-0 space-y-3 md:justify-center">
 								<FormField
 									control={form.control}
 									name="first_name"
@@ -69,7 +72,7 @@ const DailyWord = () => {
 											<FormLabel className="sr-only">First Name</FormLabel>
 											<FormControl>
 												<Input
-													className="bg-white h-[45px] placeholder:text-[#222222] md:placeholder:text-base w-full md:w-[320px] lg:w-[380px] mx-auto"
+													className="bg-white h-[45px] placeholder:text-[#222222] md:placeholder:text-base w-full mx-auto"
 													placeholder="First Name"
 													{...field}
 												/>
@@ -89,7 +92,7 @@ const DailyWord = () => {
 											<FormLabel className="sr-only">Last Name</FormLabel>
 											<FormControl>
 												<Input
-													className="bg-white h-[45px] placeholder:text-[#222222] md:placeholder:text-base w-full md:w-[320px] lg:w-[380px] mx-auto"
+													className="bg-white h-[45px] placeholder:text-[#222222] md:placeholder:text-base w-full mx-auto"
 													placeholder="Last Name"
 													{...field}
 												/>
@@ -110,7 +113,7 @@ const DailyWord = () => {
 											<FormControl>
 												<Input
 													type="email"
-													className="bg-white h-[45px] placeholder:text-[#222222] md:placeholder:text-base w-full md:w-[320px] lg:w-[380px] mx-auto"
+													className="bg-white h-[45px] placeholder:text-[#222222] md:placeholder:text-base w-full mx-auto"
 													placeholder="First Name"
 													{...field}
 												/>
