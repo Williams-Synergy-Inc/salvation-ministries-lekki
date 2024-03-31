@@ -35,6 +35,7 @@ const config = {
 			colors: {
 				"primary-blue": "#02498A",
 				"primary-gray": "#494949",
+				"primary-yellow": "#EDF202",
 			},
 			backgroundImage: {
 				"join-us":

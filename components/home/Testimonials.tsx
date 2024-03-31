@@ -6,8 +6,7 @@ import {
 	CarouselNext,
 	CarouselPrevious,
 } from "@/components/ui/carousel";
-// import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const Testimonials = () => {
 	const testimonial = [
@@ -49,29 +48,33 @@ const Testimonials = () => {
 				opts={{
 					align: "start",
 				}}
-				className="w-full"
+				className=""
 			>
 				<CarouselContent>
 					{testimonial.map((_, index) => (
-						<CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+						<CarouselItem key={index} className="md:basis-1/3 lg:basis-1/3">
 							<div className="p-1">
 								<Card>
-									<CardHeader>
-										{/* <Avatar>
+									<CardHeader className="flex flex-row gap-5 items-end">
+										<Avatar className="w-[40px] h-[40px]">
 											<AvatarImage src="https://github.com/shadcn.png" />
 											<AvatarFallback>CN</AvatarFallback>
-										</Avatar> */}
+										</Avatar>
+										<div className="grid justify-start text-start">
+											<span>{_.name}</span>
+											<span>{_.country}</span>
+										</div>
 									</CardHeader>
-									<CardContent className="flex aspect-square items-center justify-center p-6">
-										<span className="text-3xl font-semibold">{index + 1}</span>
+									<CardContent className="flex items-center justify-center">
+										<span className="text-sm font-semibold">{_.testimony}</span>
 									</CardContent>
 								</Card>
 							</div>
 						</CarouselItem>
 					))}
 				</CarouselContent>
-				<CarouselPrevious />
-				<CarouselNext />
+				<CarouselPrevious className="invisible md:visible" />
+				<CarouselNext className="invisible md:visible" />
 			</Carousel>
 		</div>
 	);
