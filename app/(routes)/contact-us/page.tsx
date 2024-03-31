@@ -56,17 +56,19 @@ const page = () => {
 		<div className="mb-20 lg:mb-[120px]">
 			<RouteHeaderBackground
 				children={chidrenContent}
-				image={"/about_header.png"}
+				image={"/contactus_header.png"}
 			/>
-			<section className="px-5 sm:container max-w-[1062px] grid gap-10 items-center justify-center">
+			<section className="px-5 sm:container max-w-[1062px] grid gap-10 items-center justify-center relative transform -translate-y-[90px]">
 				<div className="flex flex-col md:flex-row justify-center items-center text-center gap-[20px]">
-					<Image
-						src="/map.png"
-						width={400}
-						height={300}
-						alt="map"
-						className="mb-10 md:mb-0"
-					/>
+					<div className="rounded-xl">
+						<Image
+							src="/map.png"
+							width={300}
+							height={300}
+							alt="map"
+							className="mb-10 md:mb-0 rounded-lg"
+						/>
+					</div>
 					<div>
 						{contactUsData.map((_, index) => {
 							const { id, title, text } = _;
