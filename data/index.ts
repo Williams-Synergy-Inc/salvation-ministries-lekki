@@ -52,12 +52,12 @@ export const aboutUsData = [
 	{
 		id: 1,
 		title: "MISSION STATEMENT",
-		text: "Salvation Ministries is dedicated to spreading the Gospel of Jesus Christ worldwide, establishing the Kingdom of God on earth. Through innovative outreach programs, dynamic worship experiences, and impactful social initiatives, we aim to transform lives, build strong communities, and make a positive difference in the world. Driven by unwavering faith, compassion, and a commitment to excellence, we strive to be a beacon of hope, reaching the lost, serving the less fortunate, and leaving a lasting legacy of love and transformation for generations to come.",
+		text: '"Salvation Ministries is dedicated to spreading the Gospel of Jesus Christ worldwide, establishing the Kingdom of God on earth. Through innovative outreach programs, dynamic worship experiences, and impactful social initiatives, we aim to transform lives, build strong communities, and make a positive difference in the world. Driven by unwavering faith, compassion, and a commitment to excellence, we strive to be a beacon of hope, reaching the lost, serving the less fortunate, and leaving a lasting legacy of love and transformation for generations to come."',
 	},
 	{
 		id: 2,
 		title: "VISION STATEMENT",
-		text: "Salvation Ministries envisions a world transformed by the power of the Gospel, where the Kingdom of God is established on earth, and individuals from all nations come together in faith, love, and harmony.",
+		text: '"Salvation Ministries envisions a world transformed by the power of the Gospel, where the Kingdom of God is established on earth, and individuals from all nations come together in faith, love, and harmony."',
 	},
 	{
 		id: 3,

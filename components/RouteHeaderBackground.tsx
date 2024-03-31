@@ -1,6 +1,5 @@
-import { ReactNode } from "react";
 interface Props {
-	children: ReactNode;
+	children: React.ReactElement;
 }
 
 const RouteHeaderBackground = ({ children }: Props) => {
