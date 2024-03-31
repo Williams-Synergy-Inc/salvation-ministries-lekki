@@ -19,7 +19,7 @@ const Faqs = () => {
 				</p>
 			</div>
 
-			<Accordion type="single" collapsible>
+			<Accordion type="single" collapsible className="grid space-y-6 pt-2">
 				{FaqData.map((questions, index) => {
 					const { id, question, answer } = questions;
 					return (
@@ -28,11 +28,11 @@ const Faqs = () => {
 							className="bg-gradient-to-b from-[#0A0048CC] to-[#012173CC] rounded-[10px] p-px shadow-md"
 							value={`item-${id}`}
 						>
-							<div className="bg-white px-5 pb-3 rounded-[9px]">
-								<AccordionTrigger className="font-normal bg-clip-text text-transparent bg-gradient-to-r from-[#0A0048CC] to-[#012173CC]">
+							<div className="bg-white px-5 rounded-[9px]">
+								<AccordionTrigger className="font-normal text-lg bg-clip-text text-transparent bg-gradient-to-r from-[#0A0048CC] to-[#012173CC] h-[70px] dark:text-white">
 									{question}
 								</AccordionTrigger>
-								<AccordionContent className="text-start text-[#828282]">
+								<AccordionContent className="text-start text-xl dark:text-white text-[#3a3a3a]">
 									{answer}
 								</AccordionContent>
 							</div>
