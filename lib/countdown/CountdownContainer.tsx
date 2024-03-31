@@ -32,7 +32,7 @@ const CountdownContainer = ({
 		<div className="mt-2 rounded-xl">
 			<div className="flex gap-3 md:flex md:items-center md:justify-between md:mt-2  rounded-xl">
 				<Numbox num={days} unit="DAYS" />
-				<span className=" hidden text-5xl -mt-8 md:inline-block font-normal text-gray-50 ">
+				<span className="hidden text-5xl -mt-8 md:inline-block font-normal text-gray-50 ">
 					:
 				</span>
 				<Numbox num={hours} unit="HOURS" />

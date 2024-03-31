@@ -35,9 +35,7 @@
    flex-wrap: wrap;
    justify-content: flex-end;
    align-items: center;
-   transform: translateY(-70px);
-   background-color: #ffffff65;
-   backdrop-filter: blur(2px);
+   transform: translateY(-100%);
    padding: 15px 20px;
    border-radius: 10px;
 }
@@ -60,11 +58,11 @@
    align-items: center;
    justify-content: center;
    border-radius: 50%;
-   border: 1px solid black;
+   border: 1px solid white;
 }
 
 .embla__dot:hover {
-   background-color: rgba(0, 0, 0, 0.776);
+   background-color: rgba(255, 255, 255, 0.776);
 }
 
 .embla__dot:after {
@@ -79,5 +77,5 @@
 
 .embla__dot--selected:after {
    border: none !important;
-   background: #000000;
+   background: #ffffff;
 }

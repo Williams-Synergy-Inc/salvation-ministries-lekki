@@ -16,8 +16,8 @@ export default function Home() {
 				<Mandate />
 				<FeaturedSermons />
 				<JoinUs />
-				<Testimonials />
 			</div>
+			<Testimonials />
 			<DailyWord />
 			<Faqs />
 		</>

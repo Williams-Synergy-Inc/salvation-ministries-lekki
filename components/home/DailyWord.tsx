@@ -54,13 +54,13 @@ const DailyWord = () => {
 				<SelectSeparator />
 
 				<div className="grid gap-5">
-					<p>
+					<p className="text-base">
 						Have you signed up yet? Get your inspirational message in your inbox
 						every day.
 					</p>
 					<Form {...form}>
 						<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
-							<div className="grid md:flex md:space-x-5 md:space-y-0 space-y-4 md:justify-center">
+							<div className="grid md:flex md:space-x-5 md:space-y-0 space-y-3 md:justify-center">
 								<FormField
 									control={form.control}
 									name="first_name"
@@ -69,7 +69,7 @@ const DailyWord = () => {
 											<FormLabel className="sr-only">First Name</FormLabel>
 											<FormControl>
 												<Input
-													className="bg-white h-[35px] placeholder:text-[#222222] md:placeholder:text-base w-full md:w-[320px] lg:w-380px lg:h-[45px] mx-auto"
+													className="bg-white h-[45px] placeholder:text-[#222222] md:placeholder:text-base w-full md:w-[320px] lg:w-[380px] mx-auto"
 													placeholder="First Name"
 													{...field}
 												/>
@@ -89,7 +89,7 @@ const DailyWord = () => {
 											<FormLabel className="sr-only">Last Name</FormLabel>
 											<FormControl>
 												<Input
-													className="bg-white h-[35px] placeholder:text-[#222222] md:placeholder:text-base w-full md:w-[320px] lg:w-380px lg:h-[45px] mx-auto"
+													className="bg-white h-[45px] placeholder:text-[#222222] md:placeholder:text-base w-full md:w-[320px] lg:w-[380px] mx-auto"
 													placeholder="Last Name"
 													{...field}
 												/>
@@ -110,7 +110,7 @@ const DailyWord = () => {
 											<FormControl>
 												<Input
 													type="email"
-													className="bg-white h-[35px] placeholder:text-[#222222] md:placeholder:text-base w-full md:w-[320px] lg:w-380px lg:h-[45px] mx-auto"
+													className="bg-white h-[45px] placeholder:text-[#222222] md:placeholder:text-base w-full md:w-[320px] lg:w-[380px] mx-auto"
 													placeholder="First Name"
 													{...field}
 												/>
