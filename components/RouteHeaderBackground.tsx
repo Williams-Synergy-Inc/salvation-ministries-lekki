@@ -1,11 +1,15 @@
 interface Props {
-	children: React.ReactElement;
+   children: React.ReactElement;
+   image: string
 }
 
-const RouteHeaderBackground = ({ children }: Props) => {
+const RouteHeaderBackground = ({ children, image }: Props) => {
 	return (
 		<div className="h-[300px] md:h-[350px] lg:h-[470px] w-screen">
-			<div className="h-[90%] bg-[url('/about_header.png')] bg-cover bg-center flex justify-center items-center">
+			<div
+				style={{ backgroundImage: `url(${image})` }}
+				className={`h-[90%] bg-cover bg-center flex justify-center items-center`}
+			>
 				{children}
 			</div>
 		</div>

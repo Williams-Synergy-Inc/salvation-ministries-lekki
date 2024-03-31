@@ -95,3 +95,21 @@ export const aboutUsData = [
 		text: "Salvation Ministries' extensive efforts encompass spreading the gospel, broadcasting through various media, conducting outreach programs, engaging in philanthropy, and contributing to community development, all under the leadership of Pastor David Ibiyeomie.",
 	},
 ];
+
+export const contactUsData = [
+	{
+		id: 1,
+		title: "Address",
+		text: "Salvation Ministries Scintilla center Km 22 Lekki, expresssway, Lagos.",
+	},
+	{
+		id: 1,
+		title: "Email",
+		text: "technicalsmlekki@gmail.com",
+	},
+	{
+		id: 1,
+		title: "Call Us",
+		text: "+234814170417",
+	},
+];

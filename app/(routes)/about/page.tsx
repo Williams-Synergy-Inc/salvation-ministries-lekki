@@ -14,7 +14,10 @@ const page = () => {
 
 		return (
 			<div className="mb-20 lg:mb-[120px]">
-				<RouteHeaderBackground children={chidrenContent} />
+				<RouteHeaderBackground
+					children={chidrenContent}
+					image="/about_header.png"
+				/>
 				<section className="px-5 sm:container max-w-[1062px] grid gap-[35px] lg:gap-[80px] mt-10">
 					{aboutUsData.map((_, index) => {
 						const { id, title, text } = _;
