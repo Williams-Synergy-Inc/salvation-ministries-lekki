@@ -13,13 +13,13 @@ export default function Home() {
 			<HeaderCarousel />
 			<div className="container max-w-3xl lg:max-w-4xl xl:max-w-[1093px]">
 				<NextLiveService />
-            <Mandate />
-            <FeaturedSermons />
-            <JoinUs />
-            <Testimonials />
+				<Mandate />
+				<FeaturedSermons />
+				<JoinUs />
+				<Testimonials />
 			</div>
-            <DailyWord />
-            <Faqs />
+			<DailyWord />
+			<Faqs />
 		</>
 	);
 }
