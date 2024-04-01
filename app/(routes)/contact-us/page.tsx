@@ -48,7 +48,7 @@ const page = () => {
 		console.log("hello");
 	}
 	const chidrenContent = (
-		<div className="flex flex-col items-center justify-center text-white gap-4 px-5 text-center translate-y-5">
+		<div className="flex flex-col items-center justify-center text-white gap-4 px-5 text-center translate-y-4">
 			<h1 className="font-bold text-[20px] lg:text-[46px]">Contact Us</h1>
 		</div>
 	);
@@ -58,24 +58,24 @@ const page = () => {
 				children={chidrenContent}
 				image={"/contactus_header.png"}
 			/>
-			<section className="px-5 sm:container max-w-[1062px] grid gap-10 items-center justify-center relative transform -translate-y-[90px]">
-				<div className="flex flex-col md:flex-row justify-center items-center text-center gap-[20px]">
-					<div className="rounded-xl">
-						<Image
-							src="/map.png"
-							width={300}
-							height={300}
-							alt="map"
-							className="mb-10 md:mb-0 rounded-lg"
-						/>
-					</div>
+			<section className="px-5 sm:container max-w-[1062px] grid gap-20 lg:gap-28 items-center justify-center relative transform -translate-y-[90px] md:-translate-y-[140px]">
+				<div className="flex flex-col md:grid md:grid-cols-2 justify-center items-center text-center gap-[60px]">
+					<iframe
+						src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d253733.60587340518!2d3.25275208671875!3d6.4469618000000075!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103bf73e191994e5%3A0x5fc0b3982da96898!2sSalvation%20Ministries%20Lekki!5e0!3m2!1sen!2sng!4v1712011087211!5m2!1sen!2sng"
+						className="w-full h-[400px] md:h-[500px] rounded-2xl"
+						loading="lazy"
+						referrerPolicy="no-referrer-when-downgrade"
+					></iframe>
 					<div>
 						{contactUsData.map((_, index) => {
 							const { id, title, text } = _;
 							return (
-								<div key={`contact-${index}.${id}`} className="grid gap-2 mb-4">
+								<div
+									key={`contact-${index}.${id}`}
+									className="grid gap-2 mb-4 transform md:translate-y-10"
+								>
 									<span className="font-bold">{title}</span>
-									<span className="max-w-[250px]">{text}</span>
+									<span className="">{text}</span>
 								</div>
 							);
 						})}
@@ -98,7 +98,7 @@ const page = () => {
 											<FormLabel className="sr-only">Name</FormLabel>
 											<FormControl>
 												<Input
-													className="bg-white h-[35px] placeholder:text-[#222222] md:placeholder:text-base w-full md:w-[320px] lg:w-[380px] lg:h-[45px] mx-auto"
+													className="bg-white h-[45px] placeholder:text-[#222222] md:placeholder:text-base w-full md:w-[320px] lg:w-[380px] mx-auto"
 													placeholder="Name"
 													{...field}
 												/>
@@ -120,7 +120,7 @@ const page = () => {
 											<FormControl>
 												<Input
 													type="email"
-													className="bg-white h-[35px] placeholder:text-[#222222] md:placeholder:text-base w-full md:w-[320px] lg:w-[380px] lg:h-[45px] mx-auto"
+													className="bg-white h-[45px] placeholder:text-[#222222] md:placeholder:text-base w-full md:w-[320px] lg:w-[380px] mx-auto"
 													placeholder="Name *"
 													{...field}
 												/>
@@ -140,7 +140,7 @@ const page = () => {
 											<FormLabel className="sr-only">Last Name</FormLabel>
 											<FormControl>
 												<Input
-													className="bg-white h-[35px] placeholder:text-[#222222] md:placeholder:text-base w-full md:w-[320px] lg:w-[380px] lg:h-[45px] mx-auto"
+													className="bg-white h-[45px] placeholder:text-[#222222] md:placeholder:text-base w-full md:w-[320px] lg:w-[380px] mx-auto"
 													placeholder="City of Residence *"
 													{...field}
 												/>
