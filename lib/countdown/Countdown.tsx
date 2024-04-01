@@ -1,55 +1,51 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import CountdownContainer from "./CountdownContainer";
+import React, { useState, useEffect } from "react";
+import { useTimer } from "react-timer-hook";
 
-const Countdown = () => {
-	const countDownDate = new Date("2024-04-05T00:00:00").getTime();
+interface Props {
+	targetDate: string;
+}
 
-	const [days, setDays] = useState(0);
-	const [hours, setHours] = useState(0);
-	const [minutes, setMinutes] = useState(0);
-	const [seconds, setSeconds] = useState(0);
+const Countdown: React.FC<Props> = ({ targetDate }) => {
+	const [expiryTimestamp, setExpiryTimestamp] = useState<Date | null>(null);
 
 	useEffect(() => {
-		const updateTime = setInterval(() => {
-			const now = new Date().getTime();
-			const difference = countDownDate - now;
+		setExpiryTimestamp(new Date(targetDate));
+	}, [targetDate]);
 
-			const newDays = Math.floor(difference / (1000 * 60 * 60 * 24));
-			const newHours = Math.floor(
-				(difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-			);
-			const newMinutes = Math.floor(
-				(difference % (1000 * 60 * 60)) / (1000 * 60)
-			);
-			const newSeconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-			setDays(newDays);
-			setHours(newHours);
-			setMinutes(newMinutes);
-			setSeconds(newSeconds);
-
-			if (difference <= 0) {
-				clearInterval(updateTime);
-				setDays(0);
-				setHours(0);
-				setMinutes(0);
-				setSeconds(0);
-			}
-		}, 1000);
-
-		return () => {
-			clearInterval(updateTime);
-		};
-	}, [countDownDate]);
 	return (
-		<CountdownContainer
-			days={days}
-			hours={hours}
-			minutes={minutes}
-			seconds={seconds}
-		/>
+		<>{expiryTimestamp && <TimerDisplay expiryTimestamp={expiryTimestamp} />}</>
+	);
+};
+
+const TimerDisplay: React.FC<{ expiryTimestamp: Date }> = ({
+	expiryTimestamp,
+}) => {
+	const { seconds, minutes, hours, days } = useTimer({
+		expiryTimestamp,
+		onExpire: () => console.warn("onExpire called"),
+	});
+
+	return (
+		<div className="timer_container flex gap-6 lg:gap-10 uppercase items-center font-extrabold text-2xl">
+			<div className="timer flex flex-col items-center">
+				<p>{days}</p>
+				<p>Days</p>
+			</div>
+			<div className="timer flex flex-col items-center">
+				<p>{hours}</p>
+				<p>hrs</p>
+			</div>
+			<div className="timer flex flex-col items-center">
+				<p>{minutes}</p>
+				<p>mins</p>
+			</div>
+			<div className="timer flex flex-col items-center">
+				<p>{seconds}</p>
+				<p>secs</p>
+			</div>
+		</div>
 	);
 };
 
