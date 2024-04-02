@@ -53,11 +53,11 @@ const FeaturedSermons = () => {
 	];
 	return (
 		<div className="flex flex-col text-center mb-[100px]">
-			<div className="mb-10 grid gap-[20px] justify-center">
+			<div className="mb-10 grid gap-[10px] justify-center">
 				<p className=" text-primary-blue font-bold text-[24px] lg:text-[30px] xl:text-[36px] leading-[26px] md:leading-9 lg:leading-10 xl:leading-[46px]">
 					Featured Sermons
 				</p>
-				<p className="text-primary-gray text-[16px] xl:text-[18px] md:mx-0 max-w-[500px] mx-auto">
+				<p className="text-primary-gray text-[16px] xl:text-[18px] md:mx-0 max-w-[500px] mx-auto mb-5">
 					Take from our diverse array of selected sermons to strengthen your
 					spirit and indulge your thinking into the word of God.
 				</p>
