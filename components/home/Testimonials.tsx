@@ -48,7 +48,7 @@ const Testimonials = () => {
 	];
 
 	return (
-		<div className="flex flex-col text-center mb-[100px] max-w-[996px] xl:max-w-7xl mx-auto px-6 lg:px-0">
+		<div className="flex flex-col text-center mb-[100px] max-w-[996px] xl:max-w-7xl mx-auto px-4 lg:px-0">
 			<div className="grid gap-[10px] justify-center mb-10">
 				<p className="text-primary-blue font-bold text-[24px] lg:text-[30px] xl:text-[36px] leading-[26px] md:leading-9 lg:leading-10 xl:leading-[46px]">
 					Testimonies

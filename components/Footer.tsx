@@ -1,17 +1,18 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const Footer = () => {
 	return (
 		<footer className="w-screen bottom-0 bg-[#2F2F2F] flex flex-col items-center p-5 pt-[40px] md:px-[40px] text-white">
 			<div className="flex flex-col md:flex-row md:justify-between items-center gap-10 md:gap-0 mb-10 w-full md:max-w-[1060px]">
-				<div className="flex justify-center items-center">
+				<Link href={"/"} className="flex justify-center items-center">
 					<Image src="/big-logo.svg" width={150} height={100} alt="logo" />
-				</div>
+				</Link>
 
-				<div className="flex justify-center items-center gap-5 max-w-[270px]">
+				<div className="flex justify-center items-center gap-5 max-w-[300px]">
 					<Image src="/location.svg" width={20} height={20} alt="" />
-					<p className="">
+					<p className="text-[14px] md:text-[16px]">
 						Salvation Ministries Scintilla center Km 22 Lekki, expresssway,
 						Lagos
 					</p>
@@ -19,32 +20,62 @@ const Footer = () => {
 
 				<div className="flex md:grid lg:flex gap-10 lg:gap-20 justify-between items-center">
 					<div className="grid gap-3">
-						<span>Socials</span>
+						<span className="text-[14px] md:text-[16px]">Socials</span>
 						<div className="flex gap-5">
-							<Image
-								src="instagram.svg"
-								width={20}
-								height={20}
-								alt="instagram"
-							/>
-							<Image
-								src="facebook.svg"
-								width={20}
-								height={20}
-								alt="instagram"
-							/>
-							<Image src="twitter.svg" width={20} height={20} alt="instagram" />
+							<Link href="/">
+								<Image
+									src="instagram.svg"
+									width={20}
+									height={20}
+									alt="instagram"
+								/>
+							</Link>
+							<Link href="/">
+								<Image
+									src="facebook.svg"
+									width={20}
+									height={20}
+									alt="facebook"
+								/>
+							</Link>
+							<Link href="/">
+								<Image
+									src="twitter.svg"
+									width={20}
+									height={20}
+									alt="X (formerly twitter)"
+								/>
+							</Link>
 						</div>
 					</div>
+
 					<div className="grid gap-3">
-						<div className="flex gap-5">
-							<Image src="phone.svg" width={20} height={20} alt="instagram" />{" "}
+						<Link
+							className="flex items-center gap-5"
+							href={`tel:+234814170417`}
+						>
+							<span className="hidden sm:block text-[14px] md:text-[16px]">
+								Call Us
+							</span>
+							<Image src="phone.svg" width={20} height={15} alt="call us" />{" "}
 							+234814170417
-						</div>
-						<div className="flex gap-5">
-							<Image src="mail.svg" width={20} height={15} alt="instagram" />{" "}
+						</Link>
+						<Link
+							className="flex items-center gap-5"
+							href={`mailto:info@smlekki.com`}
+						>
+							<span className="hidden sm:block text-[14px] md:text-[16px]">
+								Email Us
+							</span>
+							<Image
+								src="mail.svg"
+								width={20}
+								height={10}
+								className="h-[15px]"
+								alt="instagram"
+							/>{" "}
 							info@smlekki.com
-						</div>
+						</Link>
 					</div>
 				</div>
 			</div>
