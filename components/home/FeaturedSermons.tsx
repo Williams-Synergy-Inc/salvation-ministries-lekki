@@ -17,47 +17,47 @@ const FeaturedSermons = () => {
 		{
 			img: "/featured_sermon.png",
 			title: "The Importance of Forgiveness",
-			by: "Rev, DR. Olusola",
+			by: "Rev, Dr. Olusola",
 			link: "https://spotify.com",
 		},
 		{
 			img: "/featured_sermon.png",
 			title: "The Importance of Mercy",
-			by: "Rev, DR. Olusola",
+			by: "Rev, Dr. Olusola",
 			link: "https://spotify.com",
 		},
 		{
 			img: "/featured_sermon.png",
 			title: "The Importance of Grace",
-			by: "Rev, DR. Olusola",
+			by: "Rev, Dr. Olusola",
 			link: "https://spotify.com",
 		},
 		{
 			img: "/featured_sermon.png",
 			title: "The Importance of Faith",
-			by: "Rev, DR. Olusola",
+			by: "Rev, Dr. Olusola",
 			link: "https://spotify.com",
 		},
 		{
 			img: "/featured_sermon.png",
 			title: "The Importance of Favor",
-			by: "Rev, DR. Olusola",
+			by: "Rev, Dr. Olusola",
 			link: "https://spotify.com",
 		},
 		{
 			img: "/featured_sermon.png",
 			title: "The Importance of Blessings",
-			by: "Rev, DR. Olusola",
+			by: "Rev, Dr. Olusola",
 			link: "https://spotify.com",
 		},
 	];
 	return (
 		<div className="flex flex-col text-center mb-[100px]">
-			<div className="mb-10">
-				<p className="text-[20px] md:text-[26px] lg:text-[28px] xl:text-[36px] text-primary-blue font-bold leading-[26px] md:leading-8 lg:leading-9 xl:leading-[43px]">
-					Featured sermons
+			<div className="mb-10 grid gap-[20px] justify-center">
+				<p className=" text-primary-blue font-bold text-[24px] lg:text-[30px] xl:text-[36px] leading-[26px] md:leading-9 lg:leading-10 xl:leading-[46px]">
+					Featured Sermons
 				</p>
-				<p className="text-primary-gray text-base lg:text-xl xl:text-2xl max-w-[650px] mx-auto mb-5">
+				<p className="text-primary-gray text-[16px] xl:text-[18px] md:mx-0 max-w-[500px] mx-auto">
 					Take from our diverse array of selected sermons to strengthen your
 					spirit and indulge your thinking into the word of God.
 				</p>
@@ -77,10 +77,12 @@ const FeaturedSermons = () => {
 									<Image src={img} width={300} height={230} alt={title} />
 								</CardHeader>
 								<CardContent className="p-0">
-									<CardTitle className="text-primary-blue text-base mb-1 font-medium">
+									<CardTitle className="text-primary-blue text-[16px] mb-1 font-medium">
 										{title}
 									</CardTitle>
-									<CardDescription className="italic">{by}</CardDescription>
+									<CardDescription className="italic text-[14px]">
+										{by}
+									</CardDescription>
 								</CardContent>
 							</Card>
 						</Link>

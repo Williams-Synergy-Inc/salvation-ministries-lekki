@@ -11,7 +11,7 @@ export default function Home() {
 	return (
 		<>
 			<HeaderCarousel />
-			<div className="container max-w-3xl lg:max-w-4xl xl:max-w-[1093px]">
+			<div className="sm:container px-4 max-w-3xl lg:max-w-4xl xl:max-w-[1093px]">
 				<NextLiveService />
 				<Mandate />
 				<FeaturedSermons />
