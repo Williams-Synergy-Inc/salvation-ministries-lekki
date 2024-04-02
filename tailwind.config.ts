@@ -37,10 +37,6 @@ const config = {
 				"primary-gray": "#494949",
 				"primary-yellow": "#EDF202",
 			},
-			backgroundImage: {
-				"join-us":
-					"linear-gradient(180deg, #0155A2 0%, #003566 100%), url('/join-us-bg.png')",
-			},
 		},
 	},
 	plugins: [require("tailwindcss-animate")],
