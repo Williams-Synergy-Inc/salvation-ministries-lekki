@@ -8,6 +8,10 @@ const HeaderCarousel = () => {
 			key: 1,
 			img: "/carousel/carousel-img-1.png",
 		},
+		{
+			key: 2,
+			img: "/carousel/carousel-img-1.png",
+		},
 	];
 	return (
 		<div className="max-h-screen w-screen bg-slate-400">
