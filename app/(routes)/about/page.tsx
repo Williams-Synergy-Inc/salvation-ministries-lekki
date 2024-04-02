@@ -29,7 +29,7 @@ const page = () => {
 							<p className="font-bold text-xl lg:text-[30px] uppercase text-[#1B1B1B]">
 								{title}
 							</p>
-							<p className="text-base lg:text-[20px] leading-8 text-start">
+							<p className="text-[16px] lg:text-[20px] leading-8 text-start">
 								{text}
 							</p>
 						</div>

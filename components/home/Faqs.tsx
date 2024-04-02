@@ -29,7 +29,7 @@ const Faqs = () => {
 							value={`item-${id}`}
 						>
 							<div className="bg-white px-5 rounded-[9px]">
-								<AccordionTrigger className="font-normal text-start text-[16px] bg-clip-text text-transparent bg-gradient-to-r from-[#16019bcc] to-[#012173CC] h-[70px] dark:text-white dark:text-opacity-0">
+								<AccordionTrigger className="font-normal text-start text-[16px] bg-clip-text text-transparent bg-gradient-to-r from-[#16019bcc] to-[#012173CC] h-[70px] dark:text-white">
 									{question}
 								</AccordionTrigger>
 								<AccordionContent className="text-start mb-5 text-[16px] dark:text-white leading-snug text-[#000000]">

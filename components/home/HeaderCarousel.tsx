@@ -10,7 +10,7 @@ const HeaderCarousel = () => {
 		},
 	];
 	return (
-		<div className="max-h-screen w-screen bg-green-400">
+		<div className="max-h-screen w-screen bg-slate-400">
 			<EmblaCarousel slides={_SLIDES} options={OPTIONS} />
 		</div>
 	);

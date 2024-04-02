@@ -63,14 +63,14 @@ const FeaturedSermons = () => {
 				</p>
 			</div>
 
-			<div className="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-10">
+			<div className="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-10 justify-center items-center">
 				{sermons.map((sermon, index) => {
 					const { img, title, by, link } = sermon;
 					return (
 						<Link
 							href={link}
 							key={index}
-							className="w-fit hover:scale-[1.01] transition-all"
+							className="w-fit hover:scale-[1.01] transition-all mx-auto"
 						>
 							<Card className="border-none shadow-none w-fit">
 								<CardHeader className="p-0 mb-2">
