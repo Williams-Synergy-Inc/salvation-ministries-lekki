@@ -51,7 +51,7 @@ const ContactForm = () => {
 				onSubmit={form.handleSubmit(onSubmit)}
 				className="flex flex-col space-y-5"
 			>
-				<div className="grid space-y-4 md:justify-center">
+				<div className="w-[300px] md:w-full flex flex-col space-y-3 md:justify-center text-black mb-5">
 					<FormField
 						control={form.control}
 						name="name"
