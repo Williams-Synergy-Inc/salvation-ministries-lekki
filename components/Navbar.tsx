@@ -3,7 +3,15 @@ import Image from "next/image";
 import {
 	DropdownMenu,
 	DropdownMenuContent,
+	DropdownMenuGroup,
 	DropdownMenuItem,
+	DropdownMenuLabel,
+	DropdownMenuPortal,
+	DropdownMenuSeparator,
+	DropdownMenuShortcut,
+	DropdownMenuSub,
+	DropdownMenuSubContent,
+	DropdownMenuSubTrigger,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
@@ -35,31 +43,46 @@ const Navbar = () => {
 		},
 	];
 	return (
-		<nav className="bg-[#CFD0D980] backdrop-blur-[2px] rounded-[8px] shadow-sm h-[60px] md:h-[77px] max-w-[90%] md:max-w-[85%] fixed top-8 left-1/2 transform -translate-x-1/2 w-full flex justify-center items-center z-10">
-			<div className="w-[90%] flex justify-between items-center">
-				<Link href="/">
-					<Image src="/logo.png" width={100} height={100} alt="Logo" />
+		<nav className="bg-[#CFD0D980] backdrop-blur-[2px] rounded-[8px] shadow-sm h-[70px] md:h-[77px] max-w-[90%] md:max-w-[85%] fixed top-3 left-1/2 transform -translate-x-1/2 w-full flex justify-center items-center z-10">
+			<div className="w-full px-5 flex justify-between items-center">
+				<Link href="/" className="w-[90px] h-[50px]">
+					<Image
+						src="/logo.png"
+						width={100}
+						height={100}
+						className="w-full h-full"
+						alt="Logo"
+					/>
 				</Link>
 
 				<div className="md:hidden">
 					<DropdownMenu>
-						<DropdownMenuTrigger>
-							<Image src="/menu.svg" width={25} height={25} alt="menu" />
+						<DropdownMenuTrigger asChild>
+							<Button
+								variant="menu"
+								size={"icon"}
+								className="outline-none ring-transparent bg-none hover:bg-none"
+							>
+								<Image src="/menu.svg" width={25} height={25} alt="menu" />
+							</Button>
 						</DropdownMenuTrigger>
-						<DropdownMenuContent>
+						<DropdownMenuContent className="md:hidden w-56 transform -translate-x-[15%]">
 							{links.map((_, index) => {
 								const { id, title, link } = _;
 								return (
-									<DropdownMenuItem key={`link-${index}.${id}`}>
-										<Link
-											className={`text-black text-lg px-2 h-[25px] border-black hover:border-b-2 ${
-												pathname === link ? "border-b-2" : ""
-											}`}
-											href={link}
-										>
-											{title}
-										</Link>
-									</DropdownMenuItem>
+									<DropdownMenuGroup>
+										<DropdownMenuItem asChild key={`link-${index}.${id}`}>
+											<Link
+												className={`border-black items-center hover:bg-gray-100 px-3 mx-1 rounded-lg  h-[45px] ${
+													pathname === link ? "border-b-[3px]" : ""
+												}`}
+												href={link}
+											>
+												<span className="text-black text-xl">{title}</span>
+											</Link>
+										</DropdownMenuItem>
+										<DropdownMenuSeparator />
+									</DropdownMenuGroup>
 								);
 							})}
 						</DropdownMenuContent>
@@ -81,9 +104,6 @@ const Navbar = () => {
 							</Link>
 						);
 					})}
-					{/* <Link href="/about">About</Link>
-					<Link href="/resources">Resources</Link>
-					<Link href="/contact-us">Contact Us</Link> */}
 				</div>
 
 				<Button variant="default" className="hidden md:flex">
