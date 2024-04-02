@@ -2,11 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.timer {
-   display: grid;
-   gap: .6rem;
-   font-size: 1.8rem;
-}
 ::-webkit-scrollbar {
    width: 8px;
 }
@@ -29,7 +24,14 @@
 
 @media screen and (min-width: 720px) {
    .timer {
-      font-size: 2.5rem;
+      font-size: 26px;
+      }
+      
+      }
+      
+      @media screen and (min-width: 1024px) {
+         .timer {
+            font-size: 32px;
    }
 
 }
