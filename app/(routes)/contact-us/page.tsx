@@ -31,7 +31,7 @@ const page = () => {
 							return (
 								<div
 									key={`contact-${index}.${id}`}
-									className="grid gap-[8px] mb-4 transform md:translate-y-10 text-[16px] md:text-[18px]"
+									className="grid gap-[8px] mb-4 transform md:translate-y-10 text-[16px] md:text-[18px] md:text-start"
 								>
 									<span className="font-bold">{title}</span>
 									<span className="">{text}</span>
@@ -42,7 +42,7 @@ const page = () => {
 				</div>
 
 				<div className="text-center">
-					<h2 className="font-bold text-[20px] mb-5">Send us message</h2>
+					<h2 className="font-bold text-[20px] md:text-[30px] mb-5">Send us message</h2>
 					<ContactForm />
 				</div>
 			</section>
