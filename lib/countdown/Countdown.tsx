@@ -28,23 +28,23 @@ const TimerDisplay: React.FC<{ expiryTimestamp: Date }> = ({
 	});
 
 	return (
-		<div className="timer_container flex gap-6 lg:gap-10 uppercase items-center font-extrabold text-2xl">
-			<div className="timer flex flex-col items-center">
-				<p>{days}</p>
-				<p>Days</p>
-			</div>
-			<div className="timer flex flex-col items-center">
-				<p>{hours}</p>
-				<p>hrs</p>
-			</div>
-			<div className="timer flex flex-col items-center">
-				<p>{minutes}</p>
-				<p>mins</p>
-			</div>
-			<div className="timer flex flex-col items-center">
-				<p>{seconds}</p>
-				<p>secs</p>
-			</div>
+		<div className="timer_container flex gap-6 lg:gap-10 uppercase items-center font-extrabold text-[20px] md:text-[26px] lg:text-[32px] leading-none">
+			<span className="timer">
+				<span>{days}</span>
+				<span>Days</span>
+			</span>
+			<span className="timer">
+				<span>{hours}</span>
+				<span>hrs</span>
+			</span>
+			<span className="timer">
+				<span>{minutes}</span>
+				<span>mins</span>
+			</span>
+			<span className="timer">
+				<span>{seconds}</span>
+				<span>secs</span>
+			</span>
 		</div>
 	);
 };
