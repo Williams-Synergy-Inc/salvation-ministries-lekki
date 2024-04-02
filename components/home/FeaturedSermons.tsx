@@ -63,7 +63,7 @@ const FeaturedSermons = () => {
 				</p>
 			</div>
 
-			<div className="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-10 justify-center items-center">
+			<div className="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-10 justify-center items-start">
 				{sermons.map((sermon, index) => {
 					const { img, title, by, link } = sermon;
 					return (
