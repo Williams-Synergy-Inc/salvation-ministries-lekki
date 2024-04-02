@@ -43,7 +43,7 @@ const Navbar = () => {
 		},
 	];
 	return (
-		<nav className="bg-[#CFD0D980] backdrop-blur-[2px] rounded-[8px] shadow-sm h-[70px] md:h-[77px] max-w-[90%] md:max-w-[85%] fixed top-3 left-1/2 transform -translate-x-1/2 w-full flex justify-center items-center z-10">
+		<nav className="bg-[#0000005d] backdrop-blur-[3px] rounded-[8px] shadow-sm h-[70px] md:h-[77px] max-w-[90%] fixed top-3 left-1/2 transform -translate-x-1/2 w-full flex justify-center items-center z-10">
 			<div className="w-full px-5 flex justify-between items-center">
 				<Link href="/" className="w-[90px] h-[50px]">
 					<Image
@@ -89,24 +89,26 @@ const Navbar = () => {
 					</DropdownMenu>
 				</div>
 
-				<div className="hidden md:flex gap-10 items-center">
+				<div className="hidden md:flex gap-8 lg:gap-16 items-center">
 					{links.map((_, index) => {
 						const { id, title, link } = _;
 						return (
 							<Link
 								key={`link-${index}.${id}`}
-								className={`text-white text-lg px-2 h-[25px] border-white hover:border-b-2 ${
+								className={`px-2 border-white hover:border-b-2 ${
 									pathname === link ? "border-b-2" : ""
 								}`}
 								href={link}
 							>
-								{title}
+								<span className="text-[16px] md:text-[18px] font-medium text-white h-[40px]">
+									{title}
+								</span>
 							</Link>
 						);
 					})}
 				</div>
 
-				<Button variant="default" className="hidden md:flex">
+				<Button variant="default" size={"lg"} className="hidden md:flex">
 					Service Form
 				</Button>
 			</div>
