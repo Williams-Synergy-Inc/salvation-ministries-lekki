@@ -1,7 +1,8 @@
 "use client";
 import RouteHeaderBackground from "@/components/RouteHeaderBackground";
 import { contactUsData } from "@/data";
-import ContactForm from "@/components/contact-us/ContactForm";
+import ContactForm from "@/components/forms/ContactForm";
+import { ServiceForm } from "@/components/forms/serviceForm";
 
 const page = () => {
 	const chidrenContent = (
@@ -38,11 +39,14 @@ const page = () => {
 								</div>
 							);
 						})}
+						<ServiceForm />
 					</div>
 				</div>
 
 				<div className="text-center">
-					<h2 className="font-bold text-[20px] md:text-[30px] mb-5">Send us message</h2>
+					<h2 className="font-bold text-[20px] md:text-[30px] mb-5">
+						Send us message
+					</h2>
 					<ContactForm />
 				</div>
 			</section>

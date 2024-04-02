@@ -1,6 +1,6 @@
 import React from "react";
 import { SelectSeparator } from "../ui/select";
-import SubcriptionForm from "./SubcriptionForm";
+import SubcriptionForm from "../forms/SubcriptionForm";
 
 const DailyWord = () => {
 	return (
