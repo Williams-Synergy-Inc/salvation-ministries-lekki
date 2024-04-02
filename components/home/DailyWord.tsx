@@ -8,13 +8,13 @@ const DailyWord = () => {
 			<div className="absolute inset-0 bg-gradient-to-br from-[#0155A2] to-[#003566] opacity-30 rounded-[14px]"></div>
 
 			{/* body text */}
-			<div className="flex flex-col gap-5 z-10">
-				<div className="grid gap-[10px] max-w-[596px]">
+			<div className="flex flex-col gap-5 md:gap-10 z-10">
+				<div className="grid gap-[10px] max-w-[596px] justify-center">
 					<p className="text-primary-yellow font-bold text-[24px] lg:text-[30px] xl:text-[36px] leading-[26px] md:leading-9 lg:leading-10 xl:leading-[46px]">
 						Awaken Faith
 					</p>
 
-					<p className="text-[16px] xl:text-[18px] mx-auto md:mx-0 max-w-[500px]">
+					<p className="text-[16px] xl:text-[18px] mx-auto max-w-[500px] md:mb-5">
 						Today's Word: MAR 28, 2024
 					</p>
 
@@ -34,7 +34,7 @@ const DailyWord = () => {
 						every day.
 					</p>
 
-					<SubcriptionForm/>
+					<SubcriptionForm />
 				</div>
 			</div>
 		</div>

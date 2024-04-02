@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { Button } from "@/components/ui/button";
 import {
 	Form,
@@ -30,16 +30,13 @@ const SubcriptionForm = () => {
 		},
 	});
 	function submitForm(values: z.infer<typeof formSchema>) {
-		console.log("hello");
+		console.log(values);
 	}
 	return (
 		<>
 			<Form {...form}>
-				<form
-					onSubmit={form.handleSubmit(submitForm)}
-					className="space-y-5 w-[300px] md:w-full"
-				>
-					<div className="flex flex-col md:flex-row md:space-x-5 md:space-y-0 space-y-3 md:justify-center">
+				<form onSubmit={form.handleSubmit(submitForm)}>
+					<div className="w-[300px] md:w-full flex flex-col md:flex-row md:space-x-5 md:space-y-0 space-y-3 md:justify-center text-black mb-5">
 						<FormField
 							control={form.control}
 							name="first_name"
@@ -47,9 +44,9 @@ const SubcriptionForm = () => {
 								<FormItem>
 									<FormLabel className="sr-only">First Name</FormLabel>
 									<FormControl>
-                              <Input
-                                 type="text"
-											className="bg-white h-[45px] text-black placeholder:text-[#222222] md:placeholder:text-base w-full mx-auto"
+										<Input
+											type="text"
+											className="bg-white h-[45px] placeholder:text-[#222222] md:placeholder:text-base md:min-w-[200px]"
 											placeholder="First Name"
 											{...field}
 										/>
@@ -68,9 +65,9 @@ const SubcriptionForm = () => {
 								<FormItem>
 									<FormLabel className="sr-only">Last Name</FormLabel>
 									<FormControl>
-                              <Input
-                                 type="text"
-											className="bg-white h-[45px] placeholder:text-[#222222] md:placeholder:text-base w-full mx-auto"
+										<Input
+											type="text"
+											className="bg-white h-[45px] placeholder:text-[#222222] md:placeholder:text-base md:min-w-[200px]"
 											placeholder="Last Name"
 											{...field}
 										/>
@@ -91,8 +88,8 @@ const SubcriptionForm = () => {
 									<FormControl>
 										<Input
 											type="email"
-											className="bg-white h-[45px] placeholder:text-[#222222] md:placeholder:text-base w-full mx-auto"
-											placeholder="First Name"
+											className="bg-white h-[45px] placeholder:text-[#222222] md:placeholder:text-base md:min-w-[200px]"
+											placeholder="Email Address"
 											{...field}
 										/>
 									</FormControl>

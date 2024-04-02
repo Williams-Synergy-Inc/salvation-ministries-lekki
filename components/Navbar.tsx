@@ -43,7 +43,7 @@ const Navbar = () => {
 		},
 	];
 	return (
-		<nav className="bg-[#0000005d] backdrop-blur-[3px] rounded-[8px] shadow-sm h-[70px] md:h-[77px] max-w-[90%] fixed top-3 left-1/2 transform -translate-x-1/2 w-full flex justify-center items-center z-10">
+		<nav className="bg-[#0000005d] backdrop-blur-[3px] rounded-[8px] shadow-sm h-[70px] md:h-[77px] max-w-[90%] fixed top-3 left-1/2 transform -translate-x-1/2 w-full flex justify-center items-center z-50">
 			<div className="w-full px-5 flex justify-between items-center">
 				<Link href="/" className="w-[90px] h-[50px]">
 					<Image
@@ -70,7 +70,7 @@ const Navbar = () => {
 							{links.map((_, index) => {
 								const { id, title, link } = _;
 								return (
-									<DropdownMenuGroup>
+									<DropdownMenuGroup key={id}>
 										<DropdownMenuItem asChild key={`link-${index}.${id}`}>
 											<Link
 												className={`border-black items-center hover:bg-gray-100 px-3 mx-1 rounded-lg  h-[45px] ${
