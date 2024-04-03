@@ -5,21 +5,17 @@ import {
 	DropdownMenuContent,
 	DropdownMenuGroup,
 	DropdownMenuItem,
-	DropdownMenuLabel,
-	DropdownMenuPortal,
 	DropdownMenuSeparator,
-	DropdownMenuShortcut,
-	DropdownMenuSub,
-	DropdownMenuSubContent,
-	DropdownMenuSubTrigger,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useOpenServiceModal } from "@/hooks/useServiceForm";
 
 const Navbar = () => {
-	const pathname = usePathname();
+   const pathname = usePathname();
+   const openServiceModal = useOpenServiceModal()
 	const links = [
 		{
 			id: 1,
@@ -108,7 +104,12 @@ const Navbar = () => {
 					})}
 				</div>
 
-				<Button variant="default" size={"lg"} className="hidden md:flex">
+				<Button
+					variant="default"
+					size={"lg"}
+					className="hidden md:flex"
+					onClick={openServiceModal.onOpen}
+				>
 					Service Form
 				</Button>
 			</div>

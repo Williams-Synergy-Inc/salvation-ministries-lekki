@@ -1,8 +1,7 @@
 "use client";
 import RouteHeaderBackground from "@/components/RouteHeaderBackground";
 import { contactUsData } from "@/data";
-import ContactForm from "@/components/forms/ContactForm";
-import { ServiceForm } from "@/components/forms/serviceForm";
+import ContactForm from "@/lib/forms/ContactForm";
 
 const page = () => {
 	const chidrenContent = (
@@ -39,7 +38,6 @@ const page = () => {
 								</div>
 							);
 						})}
-						<ServiceForm />
 					</div>
 				</div>
 
