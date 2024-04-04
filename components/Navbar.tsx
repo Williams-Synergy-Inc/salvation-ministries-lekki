@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -9,12 +10,12 @@ import {
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useOpenServiceModal } from "@/hooks/useServiceForm";
 
+
 const Navbar = () => {
-   const pathname = usePathname();
+	const pathname = usePathname();
    const openServiceModal = useOpenServiceModal()
 	const links = [
 		{
@@ -81,13 +82,25 @@ const Navbar = () => {
 									</DropdownMenuGroup>
 								);
 							})}
+							<DropdownMenuGroup>
+								<DropdownMenuItem className="h-[45px]">
+									<Button
+										variant="default"
+										size={"lg"}
+										className="flex"
+										onClick={() => openServiceModal.onOpen()}
+									>
+										Service Form
+									</Button>
+								</DropdownMenuItem>
+							</DropdownMenuGroup>
 						</DropdownMenuContent>
 					</DropdownMenu>
 				</div>
 
 				<div className="hidden md:flex gap-8 lg:gap-16 items-center">
 					{links.map((_, index) => {
-						const { id, title, link } = _;
+                  const { id, title, link } = _;
 						return (
 							<Link
 								key={`link-${index}.${id}`}
@@ -102,13 +115,13 @@ const Navbar = () => {
 							</Link>
 						);
 					})}
-				</div>
+            </div>
 
 				<Button
 					variant="default"
 					size={"lg"}
 					className="hidden md:flex"
-					onClick={openServiceModal.onOpen}
+					onClick={() => openServiceModal.onOpen()}
 				>
 					Service Form
 				</Button>

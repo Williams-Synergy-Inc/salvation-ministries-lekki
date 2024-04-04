@@ -3,7 +3,6 @@ import "./globals.css";
 import localFont from "next/font/local";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { PersonalInfoForm } from "@/lib/modals/JoinService";
 
 const nirmala = localFont({
 	src: "./Nirmala.ttf",
@@ -30,7 +29,7 @@ export default function RootLayout({
 			>
 				<Navbar />
 				<main className="overflow-hidden relative">
-					{children} <PersonalInfoForm />
+               {children}
 				</main>
 				<Footer />
 			</body>
