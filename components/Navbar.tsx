@@ -11,12 +11,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { usePathname } from "next/navigation";
-import { useOpenServiceModal } from "@/hooks/useServiceForm";
 
 
 const Navbar = () => {
 	const pathname = usePathname();
-   const openServiceModal = useOpenServiceModal()
 	const links = [
 		{
 			id: 1,
@@ -89,7 +87,6 @@ const Navbar = () => {
 										size={"lg"}
                               className="flex"
                               asChild
-										// onClick={() => openServiceModal.onOpen()}
 									>
 										<Link href="/service-form">Service Form</Link>
 									</Button>
@@ -122,7 +119,6 @@ const Navbar = () => {
 					variant="default"
 					size={"lg"}
 					className="hidden md:flex"
-					// onClick={() => openServiceModal.onOpen()}
 					asChild
 				>
 					<Link href="/service-form">Service Form</Link>
