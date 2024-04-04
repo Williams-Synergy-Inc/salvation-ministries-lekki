@@ -23,11 +23,8 @@ const ContactForm = () => {
 	}
 
 	return (
-		<form
-			onSubmit={handleSubmit(submitForm)}
-			className="flex flex-col space-y-5"
-		>
-			<div className="w-[300px] md:w-full flex flex-col space-y-3 md:justify-center text-black mb-5">
+		<form onSubmit={handleSubmit(submitForm)} className="">
+			<div className="space-y-5 w-full max-w-[400px] mx-auto">
 				<FormItem>
 					<Input
 						className="bg-white h-[45px] placeholder:text-[#222222] md:placeholder:text-base w-full md:w-[320px] lg:w-[380px] mx-auto"
@@ -58,11 +55,11 @@ const ContactForm = () => {
 						{...register("message")}
 					/>
 				</FormItem>
-			</div>
 
-			<Button size={"lg"} type="submit" className="w-full lg:w-[380px] mx-auto">
-				Submit
-			</Button>
+				<Button size={"lg"} type="submit" className="w-full">
+					Submit
+				</Button>
+			</div>
 		</form>
 	);
 };
