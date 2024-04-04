@@ -1,112 +1,61 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import {
-	Form,
-	FormControl,
 	FormDescription,
-	FormField,
 	FormItem,
 	FormLabel,
 	FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-
-const formSchema = z.object({
-	first_name: z.string().min(2).max(50),
-	last_name: z.string().min(2).max(50),
-	email: z.string().min(2).max(50),
-});
+import { useForm, FieldValues } from "react-hook-form";
 
 const SubcriptionForm = () => {
-	const form = useForm<z.infer<typeof formSchema>>({
-		resolver: zodResolver(formSchema),
+	const { register, handleSubmit } = useForm({
 		defaultValues: {
 			first_name: "",
 			last_name: "",
 			email: "",
 		},
 	});
-	function submitForm(values: z.infer<typeof formSchema>) {
+	function submitForm(values: FieldValues) {
 		console.log(values);
 	}
 	return (
 		<>
-			<Form {...form}>
-				<form onSubmit={form.handleSubmit(submitForm)}>
-					<div className="w-[300px] md:w-full flex flex-col md:flex-row md:space-x-5 md:space-y-0 space-y-3 md:justify-center text-black mb-5">
-						<FormField
-							control={form.control}
-							name="first_name"
-							render={({ field }) => (
-								<FormItem>
-									<FormLabel className="sr-only">First Name</FormLabel>
-									<FormControl>
-										<Input
-											type="text"
-											className="bg-white h-[45px] placeholder:text-[#222222] md:placeholder:text-base md:min-w-[200px]"
-											placeholder="First Name"
-											{...field}
-										/>
-									</FormControl>
-									<FormDescription className="sr-only">
-										Your First name.
-									</FormDescription>
-									<FormMessage />
-								</FormItem>
-							)}
+			<form onSubmit={handleSubmit(submitForm)}>
+				<div className="w-[300px] md:w-full flex flex-col md:flex-row md:space-x-5 md:space-y-0 space-y-3 md:justify-center text-black mb-5">
+					<FormItem>
+                  <label htmlFor="first_name">
+                     <Input
+                        type="text"
+                        className="bg-white h-[45px] placeholder:text-[#222222] md:placeholder:text-base md:min-w-[200px]"
+                        placeholder="First Name"
+                        {...register("first_name")}
+                     />
+                  </label>
+					</FormItem>
+					<FormItem>
+						<Input
+							type="text"
+							className="bg-white h-[45px] placeholder:text-[#222222] md:placeholder:text-base md:min-w-[200px]"
+							placeholder="Last Name"
+							{...register("last_name")}
 						/>
-						<FormField
-							control={form.control}
-							name="last_name"
-							render={({ field }) => (
-								<FormItem>
-									<FormLabel className="sr-only">Last Name</FormLabel>
-									<FormControl>
-										<Input
-											type="text"
-											className="bg-white h-[45px] placeholder:text-[#222222] md:placeholder:text-base md:min-w-[200px]"
-											placeholder="Last Name"
-											{...field}
-										/>
-									</FormControl>
-									<FormDescription className="sr-only">
-										Your last name
-									</FormDescription>
-									<FormMessage />
-								</FormItem>
-							)}
+					</FormItem>
+					<FormItem>
+						<Input
+							type="email"
+							className="bg-white h-[45px] placeholder:text-[#222222] md:placeholder:text-base md:min-w-[200px]"
+							placeholder="Email Address"
+							{...register("email")}
 						/>
-						<FormField
-							control={form.control}
-							name="email"
-							render={({ field }) => (
-								<FormItem>
-									<FormLabel className="sr-only">Email Address</FormLabel>
-									<FormControl>
-										<Input
-											type="email"
-											className="bg-white h-[45px] placeholder:text-[#222222] md:placeholder:text-base md:min-w-[200px]"
-											placeholder="Email Address"
-											{...field}
-										/>
-									</FormControl>
-									<FormDescription className="sr-only">
-										Your email
-									</FormDescription>
-									<FormMessage />
-								</FormItem>
-							)}
-						/>
-					</div>
+					</FormItem>
+				</div>
 
-					<Button size={"lg"} type="submit">
-						Submit
-					</Button>
-				</form>
-			</Form>
+				<Button size={"lg"} type="submit">
+					Submit
+				</Button>
+			</form>
 		</>
 	);
 };
