@@ -87,10 +87,11 @@ const Navbar = () => {
 									<Button
 										variant="default"
 										size={"lg"}
-										className="flex"
-										onClick={() => openServiceModal.onOpen()}
+                              className="flex"
+                              asChild
+										// onClick={() => openServiceModal.onOpen()}
 									>
-										Service Form
+										<Link href="/service-form">Service Form</Link>
 									</Button>
 								</DropdownMenuItem>
 							</DropdownMenuGroup>
@@ -100,7 +101,7 @@ const Navbar = () => {
 
 				<div className="hidden md:flex gap-8 lg:gap-16 items-center">
 					{links.map((_, index) => {
-                  const { id, title, link } = _;
+						const { id, title, link } = _;
 						return (
 							<Link
 								key={`link-${index}.${id}`}
@@ -115,15 +116,16 @@ const Navbar = () => {
 							</Link>
 						);
 					})}
-            </div>
+				</div>
 
 				<Button
 					variant="default"
 					size={"lg"}
 					className="hidden md:flex"
-					onClick={() => openServiceModal.onOpen()}
+					// onClick={() => openServiceModal.onOpen()}
+					asChild
 				>
-					Service Form
+					<Link href="/service-form">Service Form</Link>
 				</Button>
 			</div>
 		</nav>

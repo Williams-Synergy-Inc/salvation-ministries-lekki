@@ -8,7 +8,7 @@ import { FormItem } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
-const page = () => {
+const ServiceForm = () => {
 	const [loading, setLoading] = useState<boolean>(false);
 	const [imageUrl, setImageUrl] = useState("");
 	const {
@@ -347,4 +347,4 @@ const page = () => {
 	);
 };
 
-export default page;
+export default ServiceForm;
