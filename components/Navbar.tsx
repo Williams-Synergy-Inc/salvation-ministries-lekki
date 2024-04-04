@@ -11,12 +11,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { usePathname } from "next/navigation";
-import { useOpenServiceModal } from "@/hooks/useServiceForm";
 
 
 const Navbar = () => {
 	const pathname = usePathname();
-   const openServiceModal = useOpenServiceModal()
 	const links = [
 		{
 			id: 1,
@@ -40,7 +38,7 @@ const Navbar = () => {
 		},
 	];
 	return (
-		<nav className="bg-[#0000005d] backdrop-blur-[3px] rounded-[8px] shadow-sm h-[70px] md:h-[77px] max-w-[90%] fixed top-3 left-1/2 transform -translate-x-1/2 w-full flex justify-center items-center z-50">
+		<nav className="bg-[#0000005d] backdrop-blur-[3px] rounded-[8px] shadow-sm h-[70px] md:h-[77px] max-w-[90%] fixed top-3 left-1/2 transform -translate-x-1/2 w-full flex justify-center items-center z-[49]">
 			<div className="w-full px-5 flex justify-between items-center">
 				<Link href="/" className="w-[90px] h-[50px]">
 					<Image
@@ -87,10 +85,10 @@ const Navbar = () => {
 									<Button
 										variant="default"
 										size={"lg"}
-										className="flex"
-										onClick={() => openServiceModal.onOpen()}
+                              className="flex"
+                              asChild
 									>
-										Service Form
+										<Link href="/service-form">Service Form</Link>
 									</Button>
 								</DropdownMenuItem>
 							</DropdownMenuGroup>
@@ -100,7 +98,7 @@ const Navbar = () => {
 
 				<div className="hidden md:flex gap-8 lg:gap-16 items-center">
 					{links.map((_, index) => {
-                  const { id, title, link } = _;
+						const { id, title, link } = _;
 						return (
 							<Link
 								key={`link-${index}.${id}`}
@@ -115,15 +113,15 @@ const Navbar = () => {
 							</Link>
 						);
 					})}
-            </div>
+				</div>
 
 				<Button
 					variant="default"
 					size={"lg"}
 					className="hidden md:flex"
-					onClick={() => openServiceModal.onOpen()}
+					asChild
 				>
-					Service Form
+					<Link href="/service-form">Service Form</Link>
 				</Button>
 			</div>
 		</nav>

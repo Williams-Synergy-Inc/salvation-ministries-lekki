@@ -16,8 +16,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
 	children,
+	modals,
 }: Readonly<{
 	children: React.ReactNode;
+	modals: React.ReactNode;
 }>) {
 	return (
 		<html lang="en">
@@ -29,7 +31,8 @@ export default function RootLayout({
 			>
 				<Navbar />
 				<main className="overflow-hidden relative">
-               {children}
+					{modals}
+					{children}
 				</main>
 				<Footer />
 			</body>
