@@ -1,5 +1,5 @@
 "use client";
-import ServiceForm from "@/app/service-form/page";
+import ServiceForm from "@/app/(routes)/service-form/page";
 import {
 	Card,
 	CardContent,
@@ -12,17 +12,11 @@ import {
 const page = () => {
 	return (
 		<div>
-			<Card>
-				<CardHeader>
-					<CardTitle>Card Title</CardTitle>
-					<CardDescription>Card Description</CardDescription>
-				</CardHeader>
+			<Card className="max-w-[1100px] h-[90vh] left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 overflow-y-scroll fixed z-[100]">
 				<CardContent>
+					{" "}
 					<ServiceForm />
 				</CardContent>
-				<CardFooter>
-					<p>Card Footer</p>
-				</CardFooter>
 			</Card>
 		</div>
 	);

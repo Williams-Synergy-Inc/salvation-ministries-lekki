@@ -184,7 +184,9 @@ const ServiceForm = () => {
 	];
 
 	return (
-		<>
+		<div className="p-5 grid gap-3 container max-w-[640px] lg:max-w-[800px]">
+         <h1 className="text-[24px] font-bold">Service Group Form</h1>
+
 			<input
 				type="file"
 				accept="image/*"
@@ -343,7 +345,7 @@ const ServiceForm = () => {
 					</Button>
 				</div>
 			</form>
-		</>
+		</div>
 	);
 };
 

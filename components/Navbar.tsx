@@ -40,7 +40,7 @@ const Navbar = () => {
 		},
 	];
 	return (
-		<nav className="bg-[#0000005d] backdrop-blur-[3px] rounded-[8px] shadow-sm h-[70px] md:h-[77px] max-w-[90%] fixed top-3 left-1/2 transform -translate-x-1/2 w-full flex justify-center items-center z-50">
+		<nav className="bg-[#0000005d] backdrop-blur-[3px] rounded-[8px] shadow-sm h-[70px] md:h-[77px] max-w-[90%] fixed top-3 left-1/2 transform -translate-x-1/2 w-full flex justify-center items-center z-[49]">
 			<div className="w-full px-5 flex justify-between items-center">
 				<Link href="/" className="w-[90px] h-[50px]">
 					<Image
