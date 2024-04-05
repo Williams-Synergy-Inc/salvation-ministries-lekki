@@ -12,7 +12,7 @@ interface LoaderProps {
 	size?: number;
 }
 
-const Loader = ({ onLoad, size = 8 }: LoaderProps) => {
+const Loader = ({ onLoad, size = 5 }: LoaderProps) => {
 	return (
 		<div className="sweet-loading">
 			<SyncLoader
