@@ -119,19 +119,24 @@ const page = () => {
 									{
 										required: true,
 										minLength: 3,
+										min: 3,
+										max: 25,
+										type: "text",
 									})}
 								/>
 							</FormItem>
 
 							<FormItem>
 								<Input
-									type="email"
 									className="bg-white h-[45px] placeholder:text-[#222222] md:placeholder:text-base w-full"
 									placeholder="Email Address *"
 									{...(register("email_address"),
 									{
 										required: true,
 										minLength: 3,
+										min: 3,
+										max: 25,
+										type: "email",
 									})}
 								/>
 							</FormItem>
@@ -143,6 +148,9 @@ const page = () => {
 									{
 										required: true,
 										minLength: 3,
+										min: 3,
+										max: 25,
+										type: "text",
 									})}
 								/>
 							</FormItem>
@@ -154,6 +162,8 @@ const page = () => {
 									{
 										required: true,
 										minLength: 10,
+										min: 3,
+										max: 25,
 									})}
 								/>
 							</FormItem>
