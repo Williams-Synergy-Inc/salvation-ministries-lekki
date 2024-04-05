@@ -12,61 +12,60 @@ import { Input } from "@/components/ui/input";
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
 const BASE_URL = "https://salvation-ministries.up.railway.app/api/v1/misc";
 
-
 const page = () => {
-   const [loading, setLoading] = useState<boolean>(false);
-		const { register, handleSubmit, reset } = useForm({
-			defaultValues: {
-				full_name: "",
-				city_of_residence: "",
-				email_address: "",
-				message: "",
-			},
-		});
-		function submitForm(values: FieldValues) {
-			console.log(values);
-		}
+	const [loading, setLoading] = useState<boolean>(false);
+	const { register, handleSubmit, reset } = useForm({
+		defaultValues: {
+			full_name: "",
+			city_of_residence: "",
+			email_address: "",
+			message: "",
+		},
+	});
+	function submitForm(values: FieldValues) {
+		console.log(values);
+	}
 
-		const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-			try {
-				setLoading(true);
-				await axios
-					.post(`${BASE_URL}/contact-us`, data, {
-						headers: {
-							Accept: "*/*",
-							"Content-Type": "multipart/form-data",
-						},
-					})
-					.then((res) => {
-						if (res.status === 201) {
-							toast.success("Subscribed successfully");
-							reset();
-						} else {
-							throw new Error("Unexpected status code: " + res.status);
-						}
-					});
-			} catch (error) {
-				if (axios.isCancel(error)) {
-					toast.error("Request cancelled. Please try again.");
-				} else if ((error as AxiosError).response) {
-					const axiosError = error as AxiosError;
-					if (
-						axiosError.response!.status >= 400 &&
-						axiosError.response!.status < 500
-					) {
-						toast.error("Bad request. Please check your input.");
+	const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+		try {
+			setLoading(true);
+			await axios
+				.post(`${BASE_URL}/contact-us`, data, {
+					headers: {
+						Accept: "*/*",
+						"Content-Type": "multipart/form-data",
+					},
+				})
+				.then((res) => {
+					if (res.status === 201) {
+						toast.success("Subscribed successfully");
+						reset();
 					} else {
-						toast.error("Server error. Please try again later.");
+						throw new Error("Unexpected status code: " + res.status);
 					}
-				} else if ((error as AxiosError).request) {
-					toast.error("Network error. Please check your internet connection.");
+				});
+		} catch (error) {
+			if (axios.isCancel(error)) {
+				toast.error("Request cancelled. Please try again.");
+			} else if ((error as AxiosError).response) {
+				const axiosError = error as AxiosError;
+				if (
+					axiosError.response!.status >= 400 &&
+					axiosError.response!.status < 500
+				) {
+					toast.error("Bad request. Please check your input.");
 				} else {
-					toast.error("Something went wrong");
+					toast.error("Server error. Please try again later.");
 				}
-			} finally {
-				setLoading(false);
+			} else if ((error as AxiosError).request) {
+				toast.error("Network error. Please check your internet connection.");
+			} else {
+				toast.error("Something went wrong");
 			}
-   };
+		} finally {
+			setLoading(false);
+		}
+	};
 
 	const chidrenContent = (
 		<div className="flex flex-col items-center justify-center text-white gap-2 px-5 text-center translate-y-6">
@@ -81,11 +80,11 @@ const page = () => {
 				children={chidrenContent}
 				image={"/contactus_header.png"}
 			/>
-			<section className="sm:container px-4 md:px-[40px] lg:max-w-4xl xl:max-w-[1093px] flex flex-col gap-20 lg:gap-28 items-center justify-center relative transform -translate-y-[50px] lg:-translate-y-[90px]">
+			<section className="sm:container px-4 md:px-[40px] lg:max-w-5xl lg:px-0  flex flex-col gap-20 lg:gap-28 items-center justify-center relative transform -translate-y-[50px] lg:-translate-y-[90px]">
 				<div className="flex flex-col md:grid md:grid-cols-2 justify-center items-center text-center gap-[60px]">
 					<iframe
 						src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d253733.60587340518!2d3.25275208671875!3d6.4469618000000075!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103bf73e191994e5%3A0x5fc0b3982da96898!2sSalvation%20Ministries%20Lekki!5e0!3m2!1sen!2sng!4v1712011087211!5m2!1sen!2sng"
-						className="w-full h-[350px] md:h-[450px] rounded-2xl"
+						className="w-full h-[350px] lg:w-[400px] lg:h-[450px] rounded-2xl"
 						loading="lazy"
 						referrerPolicy="no-referrer-when-downgrade"
 					></iframe>
@@ -95,7 +94,7 @@ const page = () => {
 							return (
 								<div
 									key={`contact-${index}.${id}`}
-									className="grid gap-[8px] mb-4 transform md:translate-y-10 text-[16px] md:text-[18px] md:text-start"
+									className="grid gap-[8px] mb-4 transform md:translate-y-10 text-[16px] lg:text-[18px] md:text-start"
 								>
 									<span className="font-bold">{title}</span>
 									<span className="">{text}</span>
