@@ -41,7 +41,7 @@ const page = () => {
 					</div>
 				</div>
 
-				<div className="text-center">
+				<div className="text-center w-full">
 					<h2 className="font-bold text-[20px] md:text-[30px] mb-5">
 						Send us message
 					</h2>

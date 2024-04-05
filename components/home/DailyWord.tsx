@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { SelectSeparator } from "../ui/select";
 import SubcriptionForm from "../../lib/forms/SubcriptionForm";
@@ -7,8 +8,7 @@ const DailyWord = () => {
 		<div className="w-screen h-screen relative overflow-hidden bg-[url('/sign-up-bg.png')] bg-no-repeat bg-cover bg-center flex flex-col justify-center items-center text-center p-5 text-white">
 			<div className="absolute inset-0 bg-gradient-to-br from-[#0155A2] to-[#003566] opacity-30 rounded-[14px]"></div>
 
-			{/* body text */}
-			<div className="flex flex-col gap-5 md:gap-10 z-10">
+			<div className="grid items-center justify-center gap-5 md:gap-10 z-10 w-full">
 				<div className="grid gap-[10px] max-w-[596px] justify-center">
 					<p className="text-primary-yellow font-bold text-[24px] lg:text-[30px] xl:text-[36px] leading-[26px] md:leading-9 lg:leading-10 xl:leading-[46px]">
 						Awaken Faith
@@ -28,7 +28,7 @@ const DailyWord = () => {
 
 				<SelectSeparator />
 
-				<div className="flex flex-col gap-5 justify-center items-center">
+				<div className="grid gap-5 text-center">
 					<p className="text-[14px] lg:text-[16px]">
 						Have you signed up yet? Get your inspirational message in your inbox
 						every day.
