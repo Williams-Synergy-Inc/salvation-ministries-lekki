@@ -185,7 +185,7 @@ const ServiceForm = () => {
 
 	return (
 		<div className="p-5 grid gap-3 container max-w-[640px] lg:max-w-[800px]">
-         <h1 className="text-[24px] font-bold rounded-2xl">Service Group Form</h1>
+			<h1 className="text-[24px] font-bold rounded-2xl">Service Group Form</h1>
 
 			<input
 				type="file"
@@ -203,7 +203,9 @@ const ServiceForm = () => {
 					</span>
 
 					<div className="w-[200px] h-[200px] rounded-lg bg-gray-100 border-2 border-dashed relative flex justify-center items-center">
-						{imageUrl && <img className="rounded-lg" src={imageUrl} alt="" />}
+						<div className="overflow-hidden w-full h-full">
+							{imageUrl && <img className="rounded-lg" src={imageUrl} alt="" />}
+						</div>
 
 						<label
 							className="absolute -bottom-3 -right-3 bg-white rounded-full cursor-pointer"

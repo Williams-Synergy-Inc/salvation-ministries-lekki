@@ -96,24 +96,39 @@ const DailyWord = () => {
 						onSubmit={handleSubmit(onSubmit)}
 					>
 						<Input
-							type="text"
 							className="bg-white h-[45px] placeholder:text-[#222222] md:placeholder:text-base w-full"
 							placeholder="First Name"
-							{...register("first_name")}
+							{...(register("first_name"),
+							{
+								required: true,
+								min: 3,
+								max: 25,
+								type: "text",
+							})}
 						/>
 
 						<Input
-							type="text"
 							className="bg-white h-[45px] placeholder:text-[#222222] md:placeholder:text-base w-full"
 							placeholder="Last Name"
-							{...register("last_name")}
+							{...(register("last_name"),
+							{
+								required: true,
+								min: 3,
+								max: 25,
+                        type: "text",
+							})}
 						/>
 
 						<Input
-							type="email"
 							className="bg-white h-[45px] placeholder:text-[#222222] md:placeholder:text-base w-full"
 							placeholder="Email Address"
-							{...register("email_address")}
+							{...(register("email_address"),
+							{
+								required: true,
+								min: 3,
+                        max: 25,
+                        type: "email",
+							})}
 						/>
 
 						<div className="hidden md:block"></div>

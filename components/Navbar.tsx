@@ -81,11 +81,11 @@ const Navbar = () => {
 								);
 							})}
 							<DropdownMenuGroup>
-								<DropdownMenuItem className="h-[45px]">
+								<DropdownMenuItem className="">
 									<Button
 										variant="default"
 										size={"lg"}
-                              className="flex"
+                              className="flex w-full"
                               asChild
 									>
 										<Link href="/service-form">Service Form</Link>
@@ -107,7 +107,7 @@ const Navbar = () => {
 								}`}
 								href={link}
 							>
-								<span className="text-[16px] md:text-[18px] font-medium text-white h-[40px]">
+								<span className="text-[16px] font-medium text-white h-[40px]">
 									{title}
 								</span>
 							</Link>
