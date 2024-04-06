@@ -14,7 +14,12 @@ const BASE_URL = "https://salvation-ministries.up.railway.app/api/v1/misc";
 
 const page = () => {
 	const [loading, setLoading] = useState<boolean>(false);
-	const { register, handleSubmit, reset } = useForm({
+	const {
+		register,
+		handleSubmit,
+		reset,
+		formState: {},
+	} = useForm({
 		defaultValues: {
 			full_name: "",
 			city_of_residence: "",
@@ -22,9 +27,6 @@ const page = () => {
 			message: "",
 		},
 	});
-	function submitForm(values: FieldValues) {
-		console.log(values);
-	}
 
 	const onSubmit: SubmitHandler<FieldValues> = async (data) => {
 		try {
@@ -34,34 +36,16 @@ const page = () => {
 					headers: {
 						Accept: "*/*",
 						"Content-Type": "multipart/form-data",
+						"X-CSRFTOKEN":
+							"3MUmN9quKWjasYEFuYq4JJ7br0SsiH4l5gnjg5kQaCVLY3y1qtpNV3Qb2okoIr5K",
 					},
 				})
-				.then((res) => {
-					if (res.status === 201) {
-						toast.success("Subscribed successfully");
-						reset();
-					} else {
-						throw new Error("Unexpected status code: " + res.status);
-					}
+				.then(() => {
+					toast.success("Subscribed successfully");
+					reset();
 				});
 		} catch (error) {
-			if (axios.isCancel(error)) {
-				toast.error("Request cancelled. Please try again.");
-			} else if ((error as AxiosError).response) {
-				const axiosError = error as AxiosError;
-				if (
-					axiosError.response!.status >= 400 &&
-					axiosError.response!.status < 500
-				) {
-					toast.error("Bad request. Please check your input.");
-				} else {
-					toast.error("Server error. Please try again later.");
-				}
-			} else if ((error as AxiosError).request) {
-				toast.error("Network error. Please check your internet connection.");
-			} else {
-				toast.error("Something went wrong");
-			}
+			toast.error("Something went wrong");
 		} finally {
 			setLoading(false);
 		}
@@ -115,13 +99,10 @@ const page = () => {
 								<Input
 									className="bg-white h-[45px] placeholder:text-[#222222] md:placeholder:text-base w-full"
 									placeholder="Name *"
-									{...(register("full_name"),
-									{
+									{...register("full_name", {
 										required: true,
 										minLength: 3,
-										min: 3,
-										max: 25,
-										type: "text",
+										maxLength: 25,
 									})}
 								/>
 							</FormItem>
@@ -130,13 +111,11 @@ const page = () => {
 								<Input
 									className="bg-white h-[45px] placeholder:text-[#222222] md:placeholder:text-base w-full"
 									placeholder="Email Address *"
-									{...(register("email_address"),
-									{
+									{...register("email_address", {
 										required: true,
 										minLength: 3,
-										min: 3,
-										max: 25,
-										type: "email",
+										maxLength: 25,
+										pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
 									})}
 								/>
 							</FormItem>
@@ -144,13 +123,10 @@ const page = () => {
 								<Input
 									className="bg-white h-[45px] placeholder:text-[#222222] md:placeholder:text-base w-full"
 									placeholder="City of Residence *"
-									{...(register("city_of_residence"),
-									{
+									{...register("city_of_residence", {
 										required: true,
 										minLength: 3,
-										min: 3,
-										max: 25,
-										type: "text",
+										maxLength: 25,
 									})}
 								/>
 							</FormItem>
@@ -158,12 +134,10 @@ const page = () => {
 								<Textarea
 									placeholder="Message"
 									className="resize-none placeholder:text-[#222222] md:placeholder:text-[16px] "
-									{...(register("message"),
-									{
+									{...register("message", {
 										required: true,
-										minLength: 10,
-										min: 3,
-										max: 25,
+										minLength: 3,
+										maxLength: 25,
 									})}
 								/>
 							</FormItem>

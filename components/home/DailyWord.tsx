@@ -10,15 +10,20 @@ const BASE_URL = "https://salvation-ministries.up.railway.app/api/v1/hero";
 import { SelectSeparator } from "../ui/select";
 
 const DailyWord = () => {
-   const [loading, setLoading] = useState<boolean>(false);
+	const [loading, setLoading] = useState<boolean>(false);
 
-	const { register, handleSubmit, reset } = useForm({
+	const {
+		register,
+		handleSubmit,
+		reset,
+		formState: {},
+	} = useForm({
 		defaultValues: {
 			first_name: "",
 			last_name: "",
 			email_address: "",
 		},
-   });
+	});
 
 	const onSubmit: SubmitHandler<FieldValues> = async (data) => {
 		try {
@@ -26,40 +31,44 @@ const DailyWord = () => {
 			await axios
 				.post(`${BASE_URL}/newsletter`, data, {
 					headers: {
-						Accept: "*/*",
-						"Content-Type": "multipart/form-data",
+						Accept: "application/json",
+						"Content-Type": "application/json",
+						// "Content-Type": "multipart/form-data",
+						"X-CSRFTOKEN":
+							"3MUmN9quKWjasYEFuYq4JJ7br0SsiH4l5gnjg5kQaCVLY3y1qtpNV3Qb2okoIr5K",
 					},
 				})
 				.then((res) => {
-					if (res.status === 201) {
+					if (res.data === 200) {
 						toast.success("Subscribed successfully");
 						reset();
 					} else {
-						throw new Error("Unexpected status code: " + res.status);
+						throw new Error("Unexpected error occured");
 					}
 				});
+			console.log(data);
 		} catch (error) {
-			if (axios.isCancel(error)) {
-				toast.error("Request cancelled. Please try again.");
-			} else if ((error as AxiosError).response) {
-				const axiosError = error as AxiosError;
-				if (
-					axiosError.response!.status >= 400 &&
-					axiosError.response!.status < 500
-				) {
-					toast.error("Bad request. Please check your input.");
-				} else {
-					toast.error("Server error. Please try again later.");
-				}
-			} else if ((error as AxiosError).request) {
-				toast.error("Network error. Please check your internet connection.");
-			} else {
-				toast.error("Something went wrong");
-			}
+			// if (axios.isCancel(error)) {
+			// 	toast.error("Request cancelled. Please try again.");
+			// } else if ((error as AxiosError).response) {
+			// 	const axiosError = error as AxiosError;
+			// 	if (
+			// 		axiosError.response!.status >= 400 &&
+			// 		axiosError.response!.status < 500
+			// 	) {
+			// 		toast.error("Bad request");
+			// 	} else {
+			// 		toast.error("Server error. Please try again later.");
+			// 	}
+			// } else if ((error as AxiosError).request) {
+			// 	toast.error("Network error. Please check your internet connection.");
+			// } else {
+			// }
+			toast.error("Something went wrong");
 		} finally {
 			setLoading(false);
 		}
-   };
+	};
 
 	return (
 		<div className="w-screen h-screen relative overflow-hidden bg-[url('/sign-up-bg.png')] bg-no-repeat bg-cover bg-center flex flex-col justify-center items-center text-center p-5 text-white">
@@ -92,42 +101,37 @@ const DailyWord = () => {
 					</p>
 
 					<form
-						className="grid gap-5 mb-5 w-full mx-auto md:grid-cols-3 md:w-[100%]"
+						className="grid gap-5 mb-5 w-full mx-auto md:grid-cols-3 md:w-[100%] text-black"
 						onSubmit={handleSubmit(onSubmit)}
 					>
 						<Input
 							className="bg-white h-[45px] placeholder:text-[#222222] md:placeholder:text-base w-full"
 							placeholder="First Name"
-							{...(register("first_name"),
-							{
+							{...register("first_name", {
 								required: true,
-								min: 3,
-								max: 25,
-								type: "text",
+								minLength: 3,
+								maxLength: 25,
 							})}
 						/>
 
 						<Input
 							className="bg-white h-[45px] placeholder:text-[#222222] md:placeholder:text-base w-full"
 							placeholder="Last Name"
-							{...(register("last_name"),
-							{
+							{...register("last_name", {
 								required: true,
-								min: 3,
-								max: 25,
-                        type: "text",
+								minLength: 3,
+								maxLength: 25,
 							})}
 						/>
 
 						<Input
 							className="bg-white h-[45px] placeholder:text-[#222222] md:placeholder:text-base w-full"
 							placeholder="Email Address"
-							{...(register("email_address"),
-							{
+							{...register("email_address", {
 								required: true,
-								min: 3,
-                        max: 25,
-                        type: "email",
+								minLength: 3,
+								maxLength: 25,
+								pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
 							})}
 						/>
 

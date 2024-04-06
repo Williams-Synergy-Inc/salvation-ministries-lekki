@@ -18,21 +18,22 @@ const ServiceForm = () => {
 		formState: {},
 	} = useForm<FieldValues>({
 		defaultValues: {
-			fullName: "",
-			nearestBustop: "",
-			gender: "",
-			presentWorkPlace: "",
-			bornAgain: "",
-			address: "",
+			full_name: "",
+			residential_address: "",
+			nearest_bus_stop: "",
 			nationality: "",
-			maritalStatus: "",
-			dateOfBirth: "",
-			whenBornAgain: "",
-			whenJoinedChurch: "",
-			homeCellName: "",
-			titheCardNumber: "",
-			attendedWilibi: "",
-			intendedGroup: "",
+			gender: "",
+			marital_status: "",
+			phone_number: "",
+			work_place: "",
+			date_of_birth: "",
+			born_again: "",
+			born_again_date: "",
+			church_join_date: "",
+			tithe_card_number: "",
+			name_of_home_cell: "",
+			willibi_attended: "",
+			service_group: "",
 		},
 	});
 
@@ -231,52 +232,101 @@ const ServiceForm = () => {
 						<Input
 							className="bg-white h-[45px] placeholder:text-[#222222b0] md:placeholder:text-base w-full mx-auto"
 							placeholder="Full Name (surname last)"
-							{...register("fullName")}
+							{...register("full_name", {
+								required: true,
+								minLength: 3,
+								maxLength: 25,
+							})}
+						/>
+						<Input
+							className="bg-white h-[45px] placeholder:text-[#222222b0] md:placeholder:text-base w-full mx-auto"
+							placeholder="Full Name (surname last)"
+							{...register("phone_number", {
+								required: true,
+								minLength: 3,
+								maxLength: 25,
+							})}
 						/>
 						<Input
 							className="bg-white h-[45px] placeholder:text-[#222222b0] md:placeholder:text-base w-full mx-auto"
 							placeholder="Residential Address"
-							{...register("address")}
+							{...register("residential_address", {
+								required: true,
+								minLength: 3,
+								maxLength: 25,
+							})}
 						/>
 						<Input
 							className="bg-white h-[45px] placeholder:text-[#222222b0] md:placeholder:text-base w-full mx-auto"
 							placeholder="Nearest Bus-stop"
-							{...register("nearestBustop")}
+							{...register("nearest_bus_stop", {
+								required: true,
+								minLength: 3,
+								maxLength: 25,
+							})}
 						/>
 						<Input
 							className="bg-white h-[45px] placeholder:text-[#222222b0] md:placeholder:text-base w-full mx-auto"
 							placeholder="Nationality"
-							{...register("nationality")}
+							{...register("nationality", {
+								required: true,
+								minLength: 3,
+								maxLength: 25,
+							})}
 						/>
 						<Input
 							className="bg-white h-[45px] placeholder:text-[#222222b0] md:placeholder:text-base w-full mx-auto"
 							placeholder="Gender"
-							{...register("gender")}
+							{...register("gender", {
+								required: true,
+								minLength: 3,
+								maxLength: 25,
+							})}
 						/>
 						<Input
 							className="bg-white h-[45px] placeholder:text-[#222222b0] md:placeholder:text-base w-full mx-auto"
 							placeholder="Marital Status"
-							{...register("maritalStatus")}
+							{...register("marital_status", {
+								required: true,
+								minLength: 3,
+								maxLength: 25,
+							})}
 						/>
 						<Input
 							className="bg-white h-[45px] placeholder:text-[#222222b0] md:placeholder:text-base w-full mx-auto"
 							placeholder="Present Workspace"
-							{...register("presentWorkPlace")}
+							{...register("work_place", {
+								required: true,
+								minLength: 3,
+								maxLength: 25,
+							})}
 						/>
 						<Input
 							className="bg-white h-[45px] placeholder:text-[#222222b0] md:placeholder:text-base w-full mx-auto"
 							placeholder="Date of Birth"
-							{...register("dateOfBirth")}
+							{...register("date_of_birth", {
+								required: true,
+								minLength: 3,
+								maxLength: 25,
+							})}
 						/>
 						<Input
 							className="bg-white h-[45px] placeholder:text-[#222222b0] md:placeholder:text-base w-full mx-auto"
 							placeholder="Are you born Again"
-							{...register("bornAgain")}
+							{...register("born_again", {
+								required: true,
+								minLength: 3,
+								maxLength: 25,
+							})}
 						/>
 						<Input
 							className="bg-white h-[45px] placeholder:text-[#222222b0] md:placeholder:text-base w-full mx-auto"
 							placeholder="If Yes, When"
-							{...register("whenBornAgain")}
+							{...register("born_again_date", {
+								required: true,
+								minLength: 3,
+								maxLength: 25,
+							})}
 						/>
 					</div>
 				</div>
@@ -290,22 +340,38 @@ const ServiceForm = () => {
 						<Input
 							className="bg-white h-[45px] placeholder:text-[#222222b0] md:placeholder:text-base w-full mx-auto"
 							placeholder="When did you join the church"
-							{...register("whenJoinedChurch")}
+							{...register("church_join_date", {
+								required: true,
+								minLength: 3,
+								maxLength: 25,
+							})}
 						/>
 						<Input
 							className="bg-white h-[45px] placeholder:text-[#222222b0] md:placeholder:text-base w-full mx-auto"
 							placeholder="Tithe Card Number"
-							{...register("titheCardNumber")}
+							{...register("tithe_card_number", {
+								required: true,
+								minLength: 3,
+								maxLength: 25,
+							})}
 						/>
 						<Input
 							className="bg-white h-[45px] placeholder:text-[#222222b0] md:placeholder:text-base w-full mx-auto"
 							placeholder="Name of your Homecell"
-							{...register("homeCellName")}
+							{...register("name_of_home_cell", {
+								required: true,
+								minLength: 3,
+								maxLength: 25,
+							})}
 						/>
 						<Input
 							className="bg-white h-[45px] placeholder:text-[#222222b0] md:placeholder:text-base w-full mx-auto"
 							placeholder="Have you attended Wilibi"
-							{...register("attendedWilibi")}
+							{...register("willibi_attended", {
+								required: true,
+								minLength: 3,
+								maxLength: 25,
+							})}
 						/>
 					</div>
 				</div>
@@ -327,7 +393,11 @@ const ServiceForm = () => {
 										<label htmlFor={value}>
 											<RadioGroupItem
 												value={value}
-												{...register("intendedGroup")}
+												{...register("service_group", {
+													required: true,
+													minLength: 3,
+													maxLength: 25,
+												})}
 											/>
 											<span className="font-bold uppercase ml-3">
 												{label}: &nbsp;
