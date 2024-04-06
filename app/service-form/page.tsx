@@ -3,10 +3,13 @@ import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useState } from "react";
 import React from "react";
-import { useForm, FieldValues } from "react-hook-form";
+import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
 import { FormItem } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import toast from "react-hot-toast";
+import axios from "axios";
+const BASE_URL = "https://salvation-ministries.up.railway.app/api/v1/misc";
 
 const ServiceForm = () => {
 	const [loading, setLoading] = useState<boolean>(false);
@@ -14,25 +17,27 @@ const ServiceForm = () => {
 	const {
 		register,
 		handleSubmit,
-		setValue,
+      setValue,
+      reset,
 		formState: {},
 	} = useForm<FieldValues>({
 		defaultValues: {
-			fullName: "",
-			nearestBustop: "",
-			gender: "",
-			presentWorkPlace: "",
-			bornAgain: "",
-			address: "",
+			full_name: "",
+			residential_address: "",
+			nearest_bus_stop: "",
 			nationality: "",
-			maritalStatus: "",
-			dateOfBirth: "",
-			whenBornAgain: "",
-			whenJoinedChurch: "",
-			homeCellName: "",
-			titheCardNumber: "",
-			attendedWilibi: "",
-			intendedGroup: "",
+			gender: "",
+			marital_status: "",
+			phone_number: "",
+			work_place: "",
+			date_of_birth: "",
+			born_again: "",
+			born_again_date: "",
+			church_join_date: "",
+			tithe_card_number: "",
+			name_of_home_cell: "",
+			willibi_attended: "",
+			service_group: "",
 		},
 	});
 
@@ -49,56 +54,29 @@ const ServiceForm = () => {
 		}
 	};
 
-	function submitForm(values: FieldValues) {
-		console.log(values);
+   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+      console.log(data)
 		// try {
-		// 		setLoading(true);
-		// 		await axios
-		// 			.post(`${BASE_URL}`, data, {
-		// 				headers: {
-		// 					Accept: "*/*",
-		// 					"Content-Type": "multipart/form-data",
-		// 					Authorization: `Bearer ${bearer_token}`,
-		// 				},
-		// 			})
-		// 			.then(() => {
-		// 				toast.success("Added music successfully");
-		// 				reset();
-		// 				addMusic?.onClose();
-		// 				fetchMusics();
-		// 			});
-		// 	} catch (error) {
-		// 		if (axios.isCancel(error)) {
-		// 			// Handle request cancellation
-		// 			toast.error("Request cancelled. Please try again.");
-		// 		} else if ((error as AxiosError).response) {
-		// 			const axiosError = error as AxiosError;
-		// 			// The request was made and the server responded with a status code
-		// 			if (axiosError.response!.status === 401) {
-		// 				// Invalid token
-		// 				toast.error("Invalid token. Please login again.");
-		// 			} else if (
-		// 				axiosError.response!.status >= 400 &&
-		// 				axiosError.response!.status < 500
-		// 			) {
-		// 				// Bad request
-		// 				toast.error("Bad request. Please check your input.");
-		// 			} else {
-		// 				// Other errors
-		// 				toast.error("Server error. Please try again later.");
-		// 			}
-		// 		} else if ((error as AxiosError).request) {
-		// 			// The request was made but no response was received
-		// 			toast.error("Network error. Please check your internet connection.");
-		// 		} else {
-		// 			// Something happened in setting up the request that triggered an error
-		// 			toast.error("Could not add music");
-		// 		}
-		// 		setLoading(false);
-		// 	} finally {
-		// 		setLoading(false);
-		// 	}
-	}
+		// 	setLoading(true);
+		// 	await axios
+		// 		.post(`${BASE_URL}/contact-us`, data, {
+		// 			headers: {
+		// 				Accept: "*/*",
+		// 				"Content-Type": "multipart/form-data",
+		// 				"X-CSRFTOKEN":
+		// 					"3MUmN9quKWjasYEFuYq4JJ7br0SsiH4l5gnjg5kQaCVLY3y1qtpNV3Qb2okoIr5K",
+		// 			},
+		// 		})
+		// 		.then(() => {
+		// 			toast.success("Subscribed successfully");
+		// 			reset();
+		// 		});
+		// } catch (error) {
+		// 	toast.error("Something went wrong");
+		// } finally {
+		// 	setLoading(false);
+		// }
+	};
 
 	const intendedGroup = [
 		{
@@ -196,7 +174,7 @@ const ServiceForm = () => {
 				onChange={(e) => loadImageUrl(e)}
 			/>
 
-			<form onSubmit={handleSubmit(submitForm)} className="grid gap-10 mb-20">
+			<form onSubmit={handleSubmit(onSubmit)} className="grid gap-10 mb-20">
 				<div className="grid gap-4">
 					<span className="text-[18px] text-primary-blue font-bold">
 						Upload Image
@@ -231,52 +209,96 @@ const ServiceForm = () => {
 						<Input
 							className="bg-white h-[45px] placeholder:text-[#222222b0] md:placeholder:text-base w-full mx-auto"
 							placeholder="Full Name (surname last)"
-							{...register("fullName")}
+							{...register("full_name", {
+								required: true,
+								minLength: 3,
+							})}
+						/>
+						<Input
+							className="bg-white h-[45px] placeholder:text-[#222222b0] md:placeholder:text-base w-full mx-auto"
+							placeholder="Full Name (surname last)"
+							{...register("phone_number", {
+								required: true,
+							})}
 						/>
 						<Input
 							className="bg-white h-[45px] placeholder:text-[#222222b0] md:placeholder:text-base w-full mx-auto"
 							placeholder="Residential Address"
-							{...register("address")}
+							{...register("residential_address", {
+								required: true,
+								minLength: 3,
+							})}
 						/>
 						<Input
 							className="bg-white h-[45px] placeholder:text-[#222222b0] md:placeholder:text-base w-full mx-auto"
 							placeholder="Nearest Bus-stop"
-							{...register("nearestBustop")}
+							{...register("nearest_bus_stop", {
+								required: true,
+								minLength: 3,
+							})}
 						/>
 						<Input
 							className="bg-white h-[45px] placeholder:text-[#222222b0] md:placeholder:text-base w-full mx-auto"
 							placeholder="Nationality"
-							{...register("nationality")}
+							{...register("nationality", {
+								required: true,
+								minLength: 3,
+								maxLength: 25,
+							})}
 						/>
 						<Input
 							className="bg-white h-[45px] placeholder:text-[#222222b0] md:placeholder:text-base w-full mx-auto"
 							placeholder="Gender"
-							{...register("gender")}
+							{...register("gender", {
+								required: true,
+								minLength: 3,
+								maxLength: 25,
+							})}
 						/>
 						<Input
 							className="bg-white h-[45px] placeholder:text-[#222222b0] md:placeholder:text-base w-full mx-auto"
 							placeholder="Marital Status"
-							{...register("maritalStatus")}
+							{...register("marital_status", {
+								required: true,
+								minLength: 3,
+								maxLength: 25,
+							})}
 						/>
 						<Input
 							className="bg-white h-[45px] placeholder:text-[#222222b0] md:placeholder:text-base w-full mx-auto"
 							placeholder="Present Workspace"
-							{...register("presentWorkPlace")}
+							{...register("work_place", {
+								required: true,
+								minLength: 3,
+								maxLength: 25,
+							})}
 						/>
 						<Input
 							className="bg-white h-[45px] placeholder:text-[#222222b0] md:placeholder:text-base w-full mx-auto"
 							placeholder="Date of Birth"
-							{...register("dateOfBirth")}
+							{...register("date_of_birth", {
+								required: true,
+								minLength: 3,
+								maxLength: 25,
+							})}
 						/>
 						<Input
 							className="bg-white h-[45px] placeholder:text-[#222222b0] md:placeholder:text-base w-full mx-auto"
 							placeholder="Are you born Again"
-							{...register("bornAgain")}
+							{...register("born_again", {
+								required: true,
+								minLength: 3,
+								maxLength: 25,
+							})}
 						/>
 						<Input
 							className="bg-white h-[45px] placeholder:text-[#222222b0] md:placeholder:text-base w-full mx-auto"
 							placeholder="If Yes, When"
-							{...register("whenBornAgain")}
+							{...register("born_again_date", {
+								required: true,
+								minLength: 3,
+								maxLength: 25,
+							})}
 						/>
 					</div>
 				</div>
@@ -290,22 +312,34 @@ const ServiceForm = () => {
 						<Input
 							className="bg-white h-[45px] placeholder:text-[#222222b0] md:placeholder:text-base w-full mx-auto"
 							placeholder="When did you join the church"
-							{...register("whenJoinedChurch")}
+							{...register("church_join_date", {
+								required: true,
+								minLength: 3,
+								maxLength: 25,
+							})}
 						/>
 						<Input
 							className="bg-white h-[45px] placeholder:text-[#222222b0] md:placeholder:text-base w-full mx-auto"
 							placeholder="Tithe Card Number"
-							{...register("titheCardNumber")}
+							{...register("tithe_card_number", {
+								required: true,
+								minLength: 3,
+								maxLength: 25,
+							})}
 						/>
 						<Input
 							className="bg-white h-[45px] placeholder:text-[#222222b0] md:placeholder:text-base w-full mx-auto"
 							placeholder="Name of your Homecell"
-							{...register("homeCellName")}
+							{...register("name_of_home_cell", {
+								required: true,
+								minLength: 3,
+								maxLength: 25,
+							})}
 						/>
 						<Input
 							className="bg-white h-[45px] placeholder:text-[#222222b0] md:placeholder:text-base w-full mx-auto"
 							placeholder="Have you attended Wilibi"
-							{...register("attendedWilibi")}
+							{...register("willibi_attended", {})}
 						/>
 					</div>
 				</div>
@@ -327,7 +361,8 @@ const ServiceForm = () => {
 										<label htmlFor={value}>
 											<RadioGroupItem
 												value={value}
-												{...register("intendedGroup")}
+												{...register("service_group", {
+												})}
 											/>
 											<span className="font-bold uppercase ml-3">
 												{label}: &nbsp;
@@ -342,7 +377,7 @@ const ServiceForm = () => {
 				</div>
 
 				<div className="flex justify-center">
-					<Button variant={"default"} size={"lg"}>
+					<Button type="submit" variant={"default"} size={"lg"}>
 						Submit
 					</Button>
 				</div>
