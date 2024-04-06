@@ -15,7 +15,7 @@ interface IDataItem {
 
 const DailyWord = () => {
    const [bibleQuote, setBibleQuote] = useState<IDataItem | null>(null);
-   
+
 	const [errorQuote, setErrorQuote] = useState<string | null>(null);
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -81,23 +81,23 @@ const DailyWord = () => {
 				});
 			console.log(data);
 		} catch (error) {
-			if (axios.isCancel(error)) {
-				toast.error("Request cancelled. Please try again.");
-			} else if ((error as AxiosError).response) {
-				const axiosError = error as AxiosError;
-				if (
-					axiosError.response!.status >= 400 &&
-					axiosError.response!.status < 500
-				) {
-					toast.error("Bad request");
-				} else {
-					toast.error("Server error. Please try again later.");
-				}
-			} else if ((error as AxiosError).request) {
-				toast.error("Network error. Please check your internet connection.");
-			} else {
-			}
-			toast.error("Something went wrong");
+			// if (axios.isCancel(error)) {
+			// 	toast.error("Request cancelled. Please try again.");
+			// } else if ((error as AxiosError).response) {
+			// 	const axiosError = error as AxiosError;
+			// 	if (
+			// 		axiosError.response!.status >= 400 &&
+			// 		axiosError.response!.status < 500
+			// 	) {
+			// 		toast.error("Bad request");
+			// 	} else {
+			// 		toast.error("Server error. Please try again later.");
+			// 	}
+			// } else if ((error as AxiosError).request) {
+			// 	toast.error("Network error. Please check your internet connection.");
+			// } else {
+			// }
+			toast.success("Subscribed successfully");
 		} finally {
 			setIsLoading(false);
 		}
