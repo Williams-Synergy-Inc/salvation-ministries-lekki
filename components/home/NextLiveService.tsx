@@ -8,7 +8,7 @@ const NextLiveService = () => {
 				Catch the next live Salvation Ministries Lekki Service in:
 			</p>
 
-			<Countdown targetDate="2024-04-05T17:00:00" />
+			<Countdown targetDate="2024-04-10T17:00:00" />
 		</div>
 	);
 };
