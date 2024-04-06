@@ -33,12 +33,12 @@ const ServiceForm = () => {
 	} = useForm<FieldValues>({
 		defaultValues: {
 			full_name: "",
+			phone_number: "",
 			residential_address: "",
 			nearest_bus_stop: "",
 			nationality: "",
 			gender: "",
 			marital_status: "",
-			phone_number: "",
 			work_place: "",
 			date_of_birth: "",
 			born_again: "",
@@ -265,7 +265,7 @@ const ServiceForm = () => {
 							<SelectTrigger className="bg-white h-[45px] w-full mx-auto placeholder:text-[#222222b0] md:placeholder:text-base">
 								<SelectValue placeholder="Gender" />
 							</SelectTrigger>
-							<SelectContent className="z-[100]" id="select-gender">
+							<SelectContent className="z-[100]" id="gender">
 								<SelectGroup>
 									<SelectLabel>Select Gender</SelectLabel>
 									<SelectItem value="male">Male</SelectItem>
@@ -299,7 +299,7 @@ const ServiceForm = () => {
 						/>
 
 						<div className="flex justify-start items-center bg-white border-gray-100 border rounded-lg text-[#222222b0] px-[10px] shadow-sm">
-							<label htmlFor="born_again_date" className="w-full">
+							<label htmlFor="date_of_birth" className="w-full">
 								Date of Birth
 							</label>
 							<Input
@@ -381,7 +381,7 @@ const ServiceForm = () => {
 							{...register("name_of_home_cell", {
 								minLength: 3,
 							})}
-                  />
+						/>
 
 						<Select
 							{...register("willibi_attended", {
@@ -408,7 +408,6 @@ const ServiceForm = () => {
 					</span>
 
 					<RadioGroup
-						defaultValue="null"
 						className="grid gap-6"
 						{...register("service_group")}
 					>
@@ -434,29 +433,6 @@ const ServiceForm = () => {
 						})}
 					</RadioGroup>
 
-					{/* <FormItem>
-						<RadioGroup className="grid gap-5">
-							{intendedGroup.map((item, index) => {
-								const { value, text, label } = item;
-								return (
-									<FormItem
-										key={index}
-										className="flex items-center space-x-3 space-y-0"
-									>
-										<label htmlFor={value}>
-											<RadioGroupItem
-												value={value}
-											/>
-											<span className="font-bold uppercase ml-3">
-												{label}: &nbsp;
-											</span>
-											{text}
-										</label>
-									</FormItem>
-								);
-							})}
-						</RadioGroup>
-					</FormItem> */}
 				</div>
 
 				<div className="flex justify-center">

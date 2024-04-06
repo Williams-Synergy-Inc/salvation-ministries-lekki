@@ -2,15 +2,44 @@
 import axios, { AxiosError } from "axios";
 import toast from "react-hot-toast";
 import Loader from "@/lib/Loader";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
-const BASE_URL = "https://salvation-ministries.up.railway.app/api/v1/hero";
 import { SelectSeparator } from "../ui/select";
+interface IDataItem {
+	title: string;
+	bible_verse: string;
+	bible_passage: string;
+}
 
 const DailyWord = () => {
-	const [loading, setLoading] = useState<boolean>(false);
+	const [bibleQuote, setBibleQuote] = useState<IDataItem | null>(null);
+	const [errorQuote, setErrorQuote] = useState<string | null>(null);
+	const [isLoading, setIsLoading] = useState<boolean>(false);
+
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const response = await fetch(
+					"https://salvation-ministries.up.railway.app/api/v1/hero/bible/quote"
+				);
+				if (!response.ok) {
+					throw new Error("Failed to fetch data");
+				}
+				const result = await response.json();
+				setBibleQuote(result.data);
+			} catch (error) {
+				setErrorQuote(
+					error instanceof Error ? error.message : "An unknown error occurred"
+				);
+			} finally {
+				return;
+			}
+		};
+
+		fetchData();
+	}, []);
 
 	const {
 		register,
@@ -27,17 +56,20 @@ const DailyWord = () => {
 
 	const onSubmit: SubmitHandler<FieldValues> = async (data) => {
 		try {
-			setLoading(true);
+			setIsLoading(true);
 			await axios
-				.post(`${BASE_URL}/newsletter`, data, {
-					headers: {
-						Accept: "application/json",
-						"Content-Type": "application/json",
-						// "Content-Type": "multipart/form-data",
-						"X-CSRFTOKEN":
-							"3MUmN9quKWjasYEFuYq4JJ7br0SsiH4l5gnjg5kQaCVLY3y1qtpNV3Qb2okoIr5K",
-					},
-				})
+				.post(
+					`https://salvation-ministries.up.railway.app/api/v1/hero/newsletter`,
+					data,
+					{
+						headers: {
+							Accept: "application/json",
+							"Content-Type": "application/json",
+							"X-CSRFTOKEN":
+								"3MUmN9quKWjasYEFuYq4JJ7br0SsiH4l5gnjg5kQaCVLY3y1qtpNV3Qb2okoIr5K",
+						},
+					}
+				)
 				.then((res) => {
 					if (res.data === 200) {
 						toast.success("Subscribed successfully");
@@ -48,25 +80,25 @@ const DailyWord = () => {
 				});
 			console.log(data);
 		} catch (error) {
-			// if (axios.isCancel(error)) {
-			// 	toast.error("Request cancelled. Please try again.");
-			// } else if ((error as AxiosError).response) {
-			// 	const axiosError = error as AxiosError;
-			// 	if (
-			// 		axiosError.response!.status >= 400 &&
-			// 		axiosError.response!.status < 500
-			// 	) {
-			// 		toast.error("Bad request");
-			// 	} else {
-			// 		toast.error("Server error. Please try again later.");
-			// 	}
-			// } else if ((error as AxiosError).request) {
-			// 	toast.error("Network error. Please check your internet connection.");
-			// } else {
-			// }
+			if (axios.isCancel(error)) {
+				toast.error("Request cancelled. Please try again.");
+			} else if ((error as AxiosError).response) {
+				const axiosError = error as AxiosError;
+				if (
+					axiosError.response!.status >= 400 &&
+					axiosError.response!.status < 500
+				) {
+					toast.error("Bad request");
+				} else {
+					toast.error("Server error. Please try again later.");
+				}
+			} else if ((error as AxiosError).request) {
+				toast.error("Network error. Please check your internet connection.");
+			} else {
+			}
 			toast.error("Something went wrong");
 		} finally {
-			setLoading(false);
+			setIsLoading(false);
 		}
 	};
 
@@ -75,22 +107,23 @@ const DailyWord = () => {
 			<div className="absolute inset-0 bg-gradient-to-br from-[#0155A2] to-[#003566] opacity-30 rounded-[14px]"></div>
 
 			<div className="grid items-center justify-center gap-5 md:gap-10 z-10 w-full">
-				<div className="grid gap-[10px] max-w-[596px] justify-center">
-					<p className="text-primary-yellow font-bold text-[24px] lg:text-[30px] xl:text-[36px] leading-[26px] md:leading-9 lg:leading-10 xl:leading-[46px]">
-						Awaken Faith
-					</p>
+				{bibleQuote ? (
+					<div className="grid gap-[10px] max-w-[596px] justify-center">
+						<p className="text-primary-yellow font-bold text-[24px] lg:text-[30px] xl:text-[36px] leading-[26px] md:leading-9 lg:leading-10 xl:leading-[46px]">
+							{bibleQuote.title}
+						</p>
 
-					<p className="text-[16px] xl:text-[18px] mx-auto max-w-[500px] md:mb-5">
-						Today's Word: MAR 28, 2024
-					</p>
+						<p className="text-[16px] xl:text-[18px] mx-auto max-w-[500px] md:mb-5">
+							Today's Word:{bibleQuote.bible_verse}
+						</p>
 
-					<p className="text-xl md:text-2xl lg:text-3xl font-medium italic max-w-[650px] mx-auto">
-						We all face dreams and obstacles that seem too big for us, but God
-						has all the power in the world. The key is our faith. God works
-						through our faith. If you believe little, you’ll receive little. If
-						you think small and talk small, you’ll get stuck where you are.
-					</p>
-				</div>
+						<p className="text-xl md:text-2xl lg:text-3xl font-medium italic max-w-[650px] mx-auto">
+							{bibleQuote.bible_passage}
+						</p>
+					</div>
+				) : (
+					<p className="text-2xl">No Quote</p>
+				)}
 
 				<SelectSeparator />
 
@@ -140,7 +173,7 @@ const DailyWord = () => {
 						<div className="md:col-start-2">
 							<Button size={"lg"} className="" type="submit">
 								Submit
-								<Loader onLoad={loading} size={5} />
+								<Loader onLoad={isLoading} size={5} />
 							</Button>
 						</div>
 						<div className="hidden md:block"></div>

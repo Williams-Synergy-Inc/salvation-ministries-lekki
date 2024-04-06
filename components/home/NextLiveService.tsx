@@ -1,14 +1,41 @@
 "use client";
 import Countdown from "@/lib/countdown/Countdown";
+import axios from "axios";
+import { useState, useEffect } from "react";
 
 const NextLiveService = () => {
+	const [timer, setTimer] = useState("");
+	const [noDate, setNoDate] = useState("");
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const response = await fetch(
+					"https://salvation-ministries.up.railway.app/api/v1/hero/next-event"
+				);
+				if (!response.ok) {
+					throw new Error("Failed to fetch data");
+				}
+				const result = await response.json();
+				setTimer(result.data.event_date_time);
+			} catch (error) {
+				setNoDate("No upcoming events");
+			} finally {
+				return;
+			}
+		};
+
+		fetchData();
+	}, []);
+
 	return (
 		<div className="flex flex-col justify-center items-center gap-5 lg:gap-8 mx-auto py-[56px] md:py-[100px] lg:py-[120px] text-center">
 			<p className="font-bold text-primary-blue text-[20px] md:text-[29px] leading-[30px] lg:leading-9">
-				Catch the next live Salvation Ministries Lekki Service in:
+				{timer
+					? "Catch the next live Salvation Ministries Lekki Service in:"
+					: "Events coming soon"}
 			</p>
 
-			<Countdown targetDate="2024-04-10T17:00:00" />
+			{timer && <Countdown targetDate="2024-04-10T17:00:00" />}
 		</div>
 	);
 };

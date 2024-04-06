@@ -1,3 +1,4 @@
+"use client"
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
 	Carousel,
@@ -7,6 +8,7 @@ import {
 	CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useState, useEffect } from "react";
 
 const Testimonials = () => {
 	const testimonial = [
@@ -45,7 +47,28 @@ const Testimonials = () => {
 			testimony:
 				"Salvation Ministries has been my spiritual home for several years now, and it has been a journey filled with blessings and growth. The teachings are practical and relevant, and the atmosphere of worship is uplifting. I'm grateful for this amazing community.",
 		},
-	];
+   ];
+   const [testimony, setTestimony] = useState("");
+		useEffect(() => {
+			const fetchData = async () => {
+				try {
+					const response = await fetch(
+						"https://salvation-ministries.up.railway.app/api/v1/hero/next-event"
+					);
+					if (!response.ok) {
+						throw new Error("Failed to fetch data");
+					}
+					const result = await response.json();
+					setTestimony(result.data.event_date_time);
+				} catch (error) {
+					setTestimony("No testimonies");
+				} finally {
+					return;
+				}
+			};
+
+			fetchData();
+		}, []);
 
 	return (
 		<div className="flex flex-col text-center mb-[100px] max-w-[996px] xl:max-w-7xl mx-auto px-4 lg:px-0">

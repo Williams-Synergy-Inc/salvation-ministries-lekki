@@ -10,7 +10,6 @@ import { FormItem } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
-const BASE_URL = "https://salvation-ministries.up.railway.app/api/v1/misc";
 
 const page = () => {
 	const [loading, setLoading] = useState<boolean>(false);
@@ -32,14 +31,17 @@ const page = () => {
 		try {
 			setLoading(true);
 			await axios
-				.post(`${BASE_URL}/contact-us`, data, {
-					headers: {
-						Accept: "*/*",
-						"Content-Type": "multipart/form-data",
-						"X-CSRFTOKEN":
-							"3MUmN9quKWjasYEFuYq4JJ7br0SsiH4l5gnjg5kQaCVLY3y1qtpNV3Qb2okoIr5K",
-					},
-				})
+				.post(
+					`https://salvation-ministries.up.railway.app/api/v1/misc/contact-us`,
+					data,
+					{
+						headers: {
+							Accept: "*/*",
+							"Content-Type": "multipart/form-data",
+							"X-CSRFTOKEN": "3MUmN9quKWjasYEFuYq4JJ7br0SsiH4l5gnjg5kQaCVLY3y1qtpNV3Qb2okoIr5K",
+						},
+					}
+				)
 				.then(() => {
 					toast.success("Subscribed successfully");
 					reset();
