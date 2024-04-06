@@ -14,7 +14,7 @@ import { usePathname } from "next/navigation";
 
 
 const Navbar = () => {
-	const pathname = usePathname();
+   const pathname = usePathname();
 	const links = [
 		{
 			id: 1,
@@ -85,8 +85,9 @@ const Navbar = () => {
 									<Button
 										variant="default"
 										size={"lg"}
-                              className="flex w-full"
-                              asChild
+										className="flex w-full"
+										asChild
+										disabled={pathname === "service-form" ? true : false}
 									>
 										<Link href="/service-form">Service Form</Link>
 									</Button>
@@ -120,6 +121,7 @@ const Navbar = () => {
 					size={"lg"}
 					className="hidden md:flex"
 					asChild
+					disabled={pathname !== "/service-form"}
 				>
 					<Link href="/service-form">Service Form</Link>
 				</Button>

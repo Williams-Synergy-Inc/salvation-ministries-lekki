@@ -1,6 +1,16 @@
 "use client";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import {
+	Select,
+	SelectContent,
+	SelectGroup,
+	SelectItem,
+	SelectLabel,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/ui/select";
 import { useState } from "react";
 import React from "react";
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
@@ -17,8 +27,8 @@ const ServiceForm = () => {
 	const {
 		register,
 		handleSubmit,
-      setValue,
-      reset,
+		setValue,
+		reset,
 		formState: {},
 	} = useForm<FieldValues>({
 		defaultValues: {
@@ -54,8 +64,8 @@ const ServiceForm = () => {
 		}
 	};
 
-   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-      console.log(data)
+	const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+		console.log(data);
 		// try {
 		// 	setLoading(true);
 		// 	await axios
@@ -216,7 +226,8 @@ const ServiceForm = () => {
 						/>
 						<Input
 							className="bg-white h-[45px] placeholder:text-[#222222b0] md:placeholder:text-base w-full mx-auto"
-							placeholder="Full Name (surname last)"
+							placeholder="Phone Number"
+							type="number"
 							{...register("phone_number", {
 								required: true,
 							})}
@@ -246,60 +257,91 @@ const ServiceForm = () => {
 								maxLength: 25,
 							})}
 						/>
-						<Input
-							className="bg-white h-[45px] placeholder:text-[#222222b0] md:placeholder:text-base w-full mx-auto"
-							placeholder="Gender"
+						<Select
 							{...register("gender", {
 								required: true,
-								minLength: 3,
-								maxLength: 25,
 							})}
-						/>
-						<Input
-							className="bg-white h-[45px] placeholder:text-[#222222b0] md:placeholder:text-base w-full mx-auto"
-							placeholder="Marital Status"
+						>
+							<SelectTrigger className="bg-white h-[45px] w-full mx-auto placeholder:text-[#222222b0] md:placeholder:text-base">
+								<SelectValue placeholder="Gender" />
+							</SelectTrigger>
+							<SelectContent className="z-[100]" id="select-gender">
+								<SelectGroup>
+									<SelectLabel>Select Gender</SelectLabel>
+									<SelectItem value="male">Male</SelectItem>
+									<SelectItem value="female">Female</SelectItem>
+								</SelectGroup>
+							</SelectContent>
+						</Select>
+						<Select
 							{...register("marital_status", {
 								required: true,
-								minLength: 3,
-								maxLength: 25,
 							})}
-						/>
+						>
+							<SelectTrigger className="bg-white h-[45px] w-full mx-auto placeholder:text-[#222222b0] md:placeholder:text-base">
+								<SelectValue placeholder="Marital Status" />
+							</SelectTrigger>
+							<SelectContent className="z-[100]" id="marital_status">
+								<SelectGroup>
+									<SelectLabel>Select marital status</SelectLabel>
+									<SelectItem value="male">Single</SelectItem>
+									<SelectItem value="female">Married</SelectItem>
+								</SelectGroup>
+							</SelectContent>
+						</Select>
 						<Input
 							className="bg-white h-[45px] placeholder:text-[#222222b0] md:placeholder:text-base w-full mx-auto"
-							placeholder="Present Workspace"
+							placeholder="Present Workplace"
 							{...register("work_place", {
 								required: true,
 								minLength: 3,
-								maxLength: 25,
 							})}
 						/>
-						<Input
-							className="bg-white h-[45px] placeholder:text-[#222222b0] md:placeholder:text-base w-full mx-auto"
-							placeholder="Date of Birth"
-							{...register("date_of_birth", {
-								required: true,
-								minLength: 3,
-								maxLength: 25,
-							})}
-						/>
-						<Input
-							className="bg-white h-[45px] placeholder:text-[#222222b0] md:placeholder:text-base w-full mx-auto"
-							placeholder="Are you born Again"
+
+						<div className="flex justify-start items-center bg-white border-gray-100 border rounded-lg text-[#222222b0] px-[10px] shadow-sm">
+							<label htmlFor="born_again_date" className="w-full">
+								Date of Birth
+							</label>
+							<Input
+								className="bg-white h-[45px] placeholder:text-[#222222b0] md:placeholder:text-base w-full mx-auto border-none shadow-none"
+								placeholder="Date of Birth"
+								type="date"
+								{...register("date_of_birth", {
+									required: true,
+								})}
+							/>
+						</div>
+
+						<Select
 							{...register("born_again", {
 								required: true,
-								minLength: 3,
-								maxLength: 25,
 							})}
-						/>
-						<Input
-							className="bg-white h-[45px] placeholder:text-[#222222b0] md:placeholder:text-base w-full mx-auto"
-							placeholder="If Yes, When"
-							{...register("born_again_date", {
-								required: true,
-								minLength: 3,
-								maxLength: 25,
-							})}
-						/>
+						>
+							<SelectTrigger className="bg-white h-[45px] w-full mx-auto placeholder:text-[#222222b0] md:placeholder:text-base">
+								<SelectValue placeholder="Are you born again?" />
+							</SelectTrigger>
+							<SelectContent className="z-[100]" id="born_again">
+								<SelectGroup>
+									<SelectLabel>Are you born again?</SelectLabel>
+									<SelectItem value="yes">Yes</SelectItem>
+									<SelectItem value="no">No</SelectItem>
+								</SelectGroup>
+							</SelectContent>
+						</Select>
+
+						<div className="flex justify-start items-center bg-white border-gray-100 border rounded-lg text-[#222222b0] px-[10px] shadow-sm">
+							<label htmlFor="born_again_date" className="w-full">
+								If Yes, When?
+							</label>
+							<Input
+								className="bg-white h-[45px] placeholder:text-[#222222b0] md:placeholder:text-base w-full mx-auto border-none shadow-none"
+								placeholder="If Yes, When"
+								type="date"
+								{...register("born_again_date", {
+									required: true,
+								})}
+							/>
+						</div>
 					</div>
 				</div>
 
@@ -309,18 +351,24 @@ const ServiceForm = () => {
 					</span>
 
 					<div className="grid sm:grid-cols-2 gap-5 sm:gap-x-5">
-						<Input
-							className="bg-white h-[45px] placeholder:text-[#222222b0] md:placeholder:text-base w-full mx-auto"
-							placeholder="When did you join the church"
-							{...register("church_join_date", {
-								required: true,
-								minLength: 3,
-								maxLength: 25,
-							})}
-						/>
+						<div className="grid grid-cols-2 items-center bg-white border-gray-100 border rounded-lg text-[#222222b0] px-[10px] shadow-sm">
+							<label htmlFor="born_again_date" className="w-full">
+								When did you join the church?
+							</label>
+							<Input
+								className="bg-white h-[45px] placeholder:text-[#222222b0] md:placeholder:text-base w-full mx-auto border-none shadow-none"
+								placeholder="When did you join the church"
+								type="date"
+								{...register("church_join_date", {
+									required: true,
+								})}
+							/>
+						</div>
+
 						<Input
 							className="bg-white h-[45px] placeholder:text-[#222222b0] md:placeholder:text-base w-full mx-auto"
 							placeholder="Tithe Card Number"
+							type="number"
 							{...register("tithe_card_number", {
 								required: true,
 								minLength: 3,
@@ -331,25 +379,62 @@ const ServiceForm = () => {
 							className="bg-white h-[45px] placeholder:text-[#222222b0] md:placeholder:text-base w-full mx-auto"
 							placeholder="Name of your Homecell"
 							{...register("name_of_home_cell", {
-								required: true,
 								minLength: 3,
-								maxLength: 25,
 							})}
-						/>
-						<Input
-							className="bg-white h-[45px] placeholder:text-[#222222b0] md:placeholder:text-base w-full mx-auto"
-							placeholder="Have you attended Wilibi"
-							{...register("willibi_attended", {})}
-						/>
+                  />
+
+						<Select
+							{...register("willibi_attended", {
+								required: true,
+							})}
+						>
+							<SelectTrigger className="bg-white h-[45px] w-full mx-auto placeholder:text-[#222222b0] md:placeholder:text-base">
+								<SelectValue placeholder="Have you attended Wilibi?" />
+							</SelectTrigger>
+							<SelectContent className="z-[100]" id="willibi_attended">
+								<SelectGroup>
+									<SelectLabel>"Have you attended Wilibi?"</SelectLabel>
+									<SelectItem value="yes">Yes</SelectItem>
+									<SelectItem value="no">No</SelectItem>
+								</SelectGroup>
+							</SelectContent>
+						</Select>
 					</div>
 				</div>
 
-				<div className="flex flex-col gap-3">
+				<div className="flex flex-col gap-5">
 					<span className="text-[18px] text-primary-blue font-bold">
 						Please tick the service group you intend to join
 					</span>
 
-					<FormItem>
+					<RadioGroup
+						defaultValue="null"
+						className="grid gap-6"
+						{...register("service_group")}
+					>
+						{intendedGroup.map((item, index) => {
+							const { value, text, label } = item;
+							return (
+								<FormItem
+									key={index}
+									className="flex items-center space-x-3 space-y-0 h-full"
+								>
+									<div className="flex items-center space-x-2 cursor-pointer">
+										<RadioGroupItem value={value} id={value} />
+										<Label
+											htmlFor={value}
+											className="flex items-center space-x-3 space-y-0"
+										>
+											<span className="font-bold uppercase">{label}</span>
+											<span>{text}</span>
+										</Label>
+									</div>
+								</FormItem>
+							);
+						})}
+					</RadioGroup>
+
+					{/* <FormItem>
 						<RadioGroup className="grid gap-5">
 							{intendedGroup.map((item, index) => {
 								const { value, text, label } = item;
@@ -361,8 +446,6 @@ const ServiceForm = () => {
 										<label htmlFor={value}>
 											<RadioGroupItem
 												value={value}
-												{...register("service_group", {
-												})}
 											/>
 											<span className="font-bold uppercase ml-3">
 												{label}: &nbsp;
@@ -373,7 +456,7 @@ const ServiceForm = () => {
 								);
 							})}
 						</RadioGroup>
-					</FormItem>
+					</FormItem> */}
 				</div>
 
 				<div className="flex justify-center">
