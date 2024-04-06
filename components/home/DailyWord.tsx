@@ -14,7 +14,8 @@ interface IDataItem {
 }
 
 const DailyWord = () => {
-	const [bibleQuote, setBibleQuote] = useState<IDataItem | null>(null);
+   const [bibleQuote, setBibleQuote] = useState<IDataItem | null>(null);
+   
 	const [errorQuote, setErrorQuote] = useState<string | null>(null);
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 

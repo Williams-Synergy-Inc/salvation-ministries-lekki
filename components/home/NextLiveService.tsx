@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 
 const NextLiveService = () => {
 	const [timer, setTimer] = useState("");
-	const [noDate, setNoDate] = useState("");
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
@@ -18,7 +17,7 @@ const NextLiveService = () => {
 				const result = await response.json();
 				setTimer(result.data.event_date_time);
 			} catch (error) {
-				setNoDate("No upcoming events");
+				setTimer("No upcoming events");
 			} finally {
 				return;
 			}
@@ -34,8 +33,7 @@ const NextLiveService = () => {
 					? "Catch the next live Salvation Ministries Lekki Service in:"
 					: "Events coming soon"}
 			</p>
-
-			{timer && <Countdown targetDate="2024-04-10T17:00:00" />}
+			{timer && <Countdown targetDate={`${timer}`} />}
 		</div>
 	);
 };

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
 	Carousel,
@@ -10,65 +10,35 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useState, useEffect } from "react";
 
+interface IDataItem {
+	testifier_image_url: string;
+	testifier_name: string;
+	country: string;
+	testimonial: string;
+}
 const Testimonials = () => {
-	const testimonial = [
-		{
-			avatar: "/testimonial-avatar.png",
-			name: "Chidinma Okonkwo",
-			country: "Nigeria",
-			testimony:
-				"Salvation Ministries has been instrumental in shaping my spiritual journey. The powerful worship sessions and insightful sermons have ignited a passion for God in me like never before. I've experienced tremendous growth and transformation since I started attending.",
-		},
-		{
-			avatar: "/testimonial-avatar.png",
-			name: "David Okafor",
-			country: "Nigeria",
-			testimony:
-				"Being part of Salvation Ministries has been a life-changing experience for me. The genuine love and sense of community here are unparalleled. I've found a supportive family and a place where I can freely worship and grow in my faith.",
-		},
-		{
-			avatar: "/testimonial-avatar.png",
-			name: "Esther Adekunle",
-			country: "Nigeria",
-			testimony:
-				"Salvation Ministries is more than just a church; it's a sanctuary where broken lives are restored and destinies are fulfilled. The teachings have equipped me with practical wisdom and spiritual insight to navigate life's challenges successfully.",
-		},
-		{
-			avatar: "/testimonial-avatar.png",
-			name: "John Obi",
-			country: "Nigeria",
-			testimony:
-				"I'm grateful to Salvation Ministries for the profound impact it has had on my life. Through the teachings and fellowship, I've discovered my purpose and experienced divine breakthroughs. It's truly a place of transformation and empowerment.",
-		},
-		{
-			avatar: "/testimonial-avatar.png",
-			name: "Grace Eze",
-			country: "Nigeria",
-			testimony:
-				"Salvation Ministries has been my spiritual home for several years now, and it has been a journey filled with blessings and growth. The teachings are practical and relevant, and the atmosphere of worship is uplifting. I'm grateful for this amazing community.",
-		},
-   ];
-   const [testimony, setTestimony] = useState("");
-		useEffect(() => {
-			const fetchData = async () => {
-				try {
-					const response = await fetch(
-						"https://salvation-ministries.up.railway.app/api/v1/hero/next-event"
-					);
-					if (!response.ok) {
-						throw new Error("Failed to fetch data");
-					}
-					const result = await response.json();
-					setTestimony(result.data.event_date_time);
-				} catch (error) {
-					setTestimony("No testimonies");
-				} finally {
-					return;
-				}
-			};
+	const [testimonial, setTestimonial] = useState<IDataItem[]>([]);
 
-			fetchData();
-		}, []);
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const response = await fetch(
+					"https://salvation-ministries.up.railway.app/api/v1/hero/testimonies/all"
+				);
+				if (!response.ok) {
+					throw new Error("Failed to fetch data");
+				}
+				const result = await response.json();
+				setTestimonial(result.data);
+			} catch (error) {
+				setTestimonial([]);
+			} finally {
+				return;
+			}
+		};
+
+		fetchData();
+	}, []);
 
 	return (
 		<div className="flex flex-col text-center mb-[100px] max-w-[996px] xl:max-w-7xl mx-auto px-4 lg:px-0">
@@ -97,17 +67,17 @@ const Testimonials = () => {
 								<Card className="h-full">
 									<CardHeader className="flex flex-row gap-5 items-end">
 										<Avatar className="w-[40px] h-[40px]">
-											<AvatarImage src="https://github.com/shadcn.png" />
+											<AvatarImage src={`${_.testifier_image_url}`} />
 											<AvatarFallback>CN</AvatarFallback>
 										</Avatar>
 										<div className="grid justify-start text-start font-bold leading-none gap-1">
-											<span className="text-[14px]">{_.name}</span>
+											<span className="text-[14px]">{_.testifier_name}</span>
 											<span>{_.country}</span>
 										</div>
 									</CardHeader>
 									<CardContent className="flex items-center justify-center">
 										<span className="text-[14px] text-start">
-											{_.testimony}
+											{_.testimonial}
 										</span>
 									</CardContent>
 								</Card>
