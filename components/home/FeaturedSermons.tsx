@@ -1,8 +1,8 @@
+"use client"
 import {
 	Card,
 	CardContent,
 	CardDescription,
-	CardFooter,
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
@@ -11,46 +11,40 @@ import Image from "next/image";
 import Link from "next/link";
 
 import React from "react";
+import { useState, useEffect } from "react";
+interface IDataItem {
+	title: string;
+   category: string
+   image_url: string
+   preacher: string
+   link_to_sermon: string
+   featured: boolean
+}
 
 const FeaturedSermons = () => {
-	const sermons = [
-		{
-			img: "/featured_sermon.png",
-			title: "The Importance of Forgiveness",
-			by: "Rev, Dr. Olusola",
-			link: "https://spotify.com",
-		},
-		{
-			img: "/featured_sermon.png",
-			title: "The Importance of Mercy",
-			by: "Rev, Dr. Olusola",
-			link: "https://spotify.com",
-		},
-		{
-			img: "/featured_sermon.png",
-			title: "The Importance of Grace",
-			by: "Rev, Dr. Olusola",
-			link: "https://spotify.com",
-		},
-		{
-			img: "/featured_sermon.png",
-			title: "The Importance of Faith",
-			by: "Rev, Dr. Olusola",
-			link: "https://spotify.com",
-		},
-		{
-			img: "/featured_sermon.png",
-			title: "The Importance of Favor",
-			by: "Rev, Dr. Olusola",
-			link: "https://spotify.com",
-		},
-		{
-			img: "/featured_sermon.png",
-			title: "The Importance of Blessings",
-			by: "Rev, Dr. Olusola",
-			link: "https://spotify.com",
-		},
-	];
+   const [sermons, setsermons] = useState<IDataItem[]>([]);
+		useEffect(() => {
+			const fetchData = async () => {
+				try {
+					const response = await fetch(
+						"https://salvation-ministries.up.railway.app/api/v1/resources/featured/sermons"
+					);
+					if (!response.ok) {
+						throw new Error("Failed to fetch data");
+					}
+					const result = await response.json();
+					setsermons(result.data);
+				} catch (error) {
+					setsermons([]);
+				} finally {
+					return;
+				}
+			};
+
+			fetchData();
+      }, []);
+
+
 	return (
 		<div className="flex flex-col text-center mb-[100px]">
 			<div className="mb-10 grid gap-[10px] justify-center">
@@ -65,23 +59,23 @@ const FeaturedSermons = () => {
 
 			<div className="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-10 justify-center items-start">
 				{sermons.map((sermon, index) => {
-					const { img, title, by, link } = sermon;
+					const { image_url, title, preacher, link_to_sermon } = sermon;
 					return (
 						<Link
-							href={link}
+							href={link_to_sermon}
 							key={index}
 							className="w-fit hover:scale-[1.01] transition-all mx-auto"
 						>
 							<Card className="border-none shadow-none w-fit">
 								<CardHeader className="p-0 mb-2">
-									<Image src={img} width={300} height={230} alt={title} />
+									<Image src={image_url} width={300} height={200} alt={title} />
 								</CardHeader>
 								<CardContent className="p-0">
 									<CardTitle className="text-primary-blue text-[16px] mb-1 font-medium">
 										{title}
 									</CardTitle>
 									<CardDescription className="italic text-[14px]">
-										{by}
+										{preacher}
 									</CardDescription>
 								</CardContent>
 							</Card>

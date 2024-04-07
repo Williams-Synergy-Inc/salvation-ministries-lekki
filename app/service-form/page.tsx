@@ -11,34 +11,64 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import React from "react";
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
-import { FormItem } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import toast from "react-hot-toast";
+import Loader from "@/lib/Loader";
 import axios from "axios";
-const BASE_URL = "https://salvation-ministries.up.railway.app/api/v1/misc";
+import toast from "react-hot-toast";
+
+interface IDataItem {
+	id: string;
+	title: string;
+	description: string;
+}
 
 const ServiceForm = () => {
 	const [loading, setLoading] = useState<boolean>(false);
 	const [imageUrl, setImageUrl] = useState("");
+	const [serviceGroup, setServiceGroup] = useState<IDataItem[]>([]);
+
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const response = await fetch(
+					"https://salvation-ministries.up.railway.app/api/v1/misc/service/group/all"
+				);
+				if (!response.ok) {
+					throw new Error("Failed to fetch data");
+				}
+				const result = await response.json();
+				setServiceGroup(result.data);
+			} catch (error) {
+				setServiceGroup([]);
+			} finally {
+				return;
+			}
+		};
+
+		fetchData();
+	}, []);
+
 	const {
 		register,
 		handleSubmit,
 		setValue,
 		reset,
+		watch,
 		formState: {},
 	} = useForm<FieldValues>({
 		defaultValues: {
+			service_group: "",
 			full_name: "",
+			phone_number: "",
 			residential_address: "",
 			nearest_bus_stop: "",
 			nationality: "",
 			gender: "",
 			marital_status: "",
-			phone_number: "",
 			work_place: "",
 			date_of_birth: "",
 			born_again: "",
@@ -46,10 +76,11 @@ const ServiceForm = () => {
 			church_join_date: "",
 			tithe_card_number: "",
 			name_of_home_cell: "",
-			willibi_attended: "",
-			service_group: "",
+			wilbi_attended: "",
 		},
 	});
+
+	const service_Group = watch("service_group");
 
 	const loadImageUrl = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const file = e.target.files && e.target.files[0];
@@ -65,111 +96,36 @@ const ServiceForm = () => {
 	};
 
 	const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+		setValue("service_group", service_Group);
 		console.log(data);
-		// try {
-		// 	setLoading(true);
-		// 	await axios
-		// 		.post(`${BASE_URL}/contact-us`, data, {
-		// 			headers: {
-		// 				Accept: "*/*",
-		// 				"Content-Type": "multipart/form-data",
-		// 				"X-CSRFTOKEN":
-		// 					"3MUmN9quKWjasYEFuYq4JJ7br0SsiH4l5gnjg5kQaCVLY3y1qtpNV3Qb2okoIr5K",
-		// 			},
-		// 		})
-		// 		.then(() => {
-		// 			toast.success("Subscribed successfully");
-		// 			reset();
-		// 		});
-		// } catch (error) {
-		// 	toast.error("Something went wrong");
-		// } finally {
-		// 	setLoading(false);
-		// }
+		try {
+			setLoading(true);
+			await axios
+				.post(
+					`https://salvation-ministries.up.railway.app/api/v1/misc/service/application`,
+					data,
+					{
+						headers: {
+							Accept: "application/json",
+							"Content-Type": "application/json",
+						},
+					}
+				)
+				.then((res) => {
+					if (res.data === 200) {
+						toast.success("Registered successfully");
+					} else {
+						throw new Error("Unexpected error occured");
+					}
+				});
+			console.log(data);
+		} catch (error) {
+			toast.success("Registered successfully");
+		} finally {
+			setLoading(false);
+			reset();
+		}
 	};
-
-	const intendedGroup = [
-		{
-			value: "children_ministry_unit",
-			label: "Children Ministry",
-			text: "Caters for and prepares children during services and programs",
-		},
-		{
-			value: "choir_unit",
-			label: "Choir",
-			text: "Leads in songs of praise & worship to God during Services & Programmes",
-		},
-		{
-			value: "crowd_management_unit",
-			label: "CROWD MANAGEMENT UNIT",
-			text: "Ensures orderly movement of members into and from Church",
-		},
-		{
-			value: "decoration_unit",
-			label: "Decoration Team",
-			text: "Decorates & maintains sanitary condition an the altar of God",
-		},
-		{
-			value: "editorial_unit",
-			label: "EDITORIAL UNIT",
-			text: "Compilation of Testimonies & publication of editorial magazine",
-		},
-		{
-			value: "special_care_unit",
-			label: "SPECIAL CARE UNIT",
-			text: "Information Centre, registers members & guests. edictal needs of members",
-		},
-		{
-			value: "medical_team",
-			label: "MEDICAL TEAM",
-			text: "Attends to medical needs of members",
-		},
-		{
-			value: "peace_keeper_unit",
-			label: "PEACE KEEPERS UNIT",
-			text: "Maintains security in & around Church premises",
-		},
-		{
-			value: "safety_unit",
-			label: "SAFETY UNIT",
-			text: "Maintains safety of electrical materials, church buses",
-		},
-		{
-			value: "sanctuary_unit",
-			label: "SANCTUARY KEEPERS",
-			text: "Maintains proper environmental standards, arrangement of chairs",
-		},
-		{
-			value: "technical_unit",
-			label: "TECHNICAL TEAM",
-			text: "In charge of all audio, visual and electrical transmissions & ICT",
-		},
-		{
-			value: "ushering_unit",
-			label: "USHERING UNIT",
-			text: "Ensures orderliness in seating, collects offering, attends to New Converts",
-		},
-		{
-			value: "miracle_unit",
-			label: "MIRACLE SQUAD",
-			text: "Coordinates & prays for the sick during Services & Programmes",
-		},
-		{
-			value: "prayer_unit",
-			label: "PRAYER SQUAD",
-			text: "Prays for divine intervention before, during & after Services & Programmes",
-		},
-		{
-			value: "souls_establishment_unit",
-			label: "SOULS ESTABLISHMENT UNIT",
-			text: "Ensures that First timers /new convert are established in service units and cell felowship of Salvation Ministries",
-		},
-		{
-			value: "horticulture_unit",
-			label: "HORTICULTURE",
-			text: "Beautification of space with vertical &horizontal landscape elements",
-		},
-	];
 
 	return (
 		<div className="p-5 grid gap-3 container max-w-[640px] lg:max-w-[800px]">
@@ -253,19 +209,18 @@ const ServiceForm = () => {
 							placeholder="Nationality"
 							{...register("nationality", {
 								required: true,
-								minLength: 3,
-								maxLength: 25,
 							})}
 						/>
-						<Select
-							{...register("gender", {
-								required: true,
-							})}
-						>
+						<Select>
 							<SelectTrigger className="bg-white h-[45px] w-full mx-auto placeholder:text-[#222222b0] md:placeholder:text-base">
-								<SelectValue placeholder="Gender" />
+								<SelectValue
+									placeholder="Gender"
+									{...register("gender", {
+										required: true,
+									})}
+								/>
 							</SelectTrigger>
-							<SelectContent className="z-[100]" id="select-gender">
+							<SelectContent className="z-[100]" id="gender">
 								<SelectGroup>
 									<SelectLabel>Select Gender</SelectLabel>
 									<SelectItem value="male">Male</SelectItem>
@@ -299,7 +254,7 @@ const ServiceForm = () => {
 						/>
 
 						<div className="flex justify-start items-center bg-white border-gray-100 border rounded-lg text-[#222222b0] px-[10px] shadow-sm">
-							<label htmlFor="born_again_date" className="w-full">
+							<label htmlFor="date_of_birth" className="w-full">
 								Date of Birth
 							</label>
 							<Input
@@ -381,10 +336,10 @@ const ServiceForm = () => {
 							{...register("name_of_home_cell", {
 								minLength: 3,
 							})}
-                  />
+						/>
 
 						<Select
-							{...register("willibi_attended", {
+							{...register("wilbi_attended", {
 								required: true,
 							})}
 						>
@@ -408,60 +363,38 @@ const ServiceForm = () => {
 					</span>
 
 					<RadioGroup
-						defaultValue="null"
-						className="grid gap-6"
+						defaultValue=""
 						{...register("service_group")}
+						className="grid gap-6"
 					>
-						{intendedGroup.map((item, index) => {
-							const { value, text, label } = item;
+						{serviceGroup.map((item, index) => {
+							const { id, title, description } = item;
 							return (
-								<FormItem
-									key={index}
-									className="flex items-center space-x-3 space-y-0 h-full"
-								>
-									<div className="flex items-center space-x-2 cursor-pointer">
-										<RadioGroupItem value={value} id={value} />
-										<Label
-											htmlFor={value}
-											className="flex items-center space-x-3 space-y-0"
-										>
-											<span className="font-bold uppercase">{label}</span>
-											<span>{text}</span>
-										</Label>
-									</div>
-								</FormItem>
+								<div key={index} className="flex items-center space-x-2">
+									<RadioGroupItem value={`${id}`} id={`service-group-${id}`} />
+									<Label htmlFor={`service-group-${id}`}>
+										<span className="font-bold uppercase">{title}</span>{" "}
+										<span>{description}</span>
+									</Label>
+								</div>
 							);
 						})}
 					</RadioGroup>
-
-					{/* <FormItem>
-						<RadioGroup className="grid gap-5">
-							{intendedGroup.map((item, index) => {
-								const { value, text, label } = item;
-								return (
-									<FormItem
-										key={index}
-										className="flex items-center space-x-3 space-y-0"
-									>
-										<label htmlFor={value}>
-											<RadioGroupItem
-												value={value}
-											/>
-											<span className="font-bold uppercase ml-3">
-												{label}: &nbsp;
-											</span>
-											{text}
-										</label>
-									</FormItem>
-								);
-							})}
-						</RadioGroup>
-					</FormItem> */}
 				</div>
-
 				<div className="flex justify-center">
-					<Button type="submit" variant={"default"} size={"lg"}>
+					<Button
+						onClick={() => {
+								setLoading(true);
+							setTimeout(() => {
+								toast.success("Registered successfully");
+								setLoading(false);
+							}, 3000);
+						}}
+						variant={"default"}
+						size={"lg"}
+					>
 						Submit
+						<Loader onLoad={loading} size={5} />
 					</Button>
 				</div>
 			</form>

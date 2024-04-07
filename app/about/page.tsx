@@ -1,3 +1,4 @@
+"use client";
 import RouteHeaderBackground from "@/components/RouteHeaderBackground";
 import { aboutUsData } from "@/data";
 const page = () => {
@@ -32,6 +33,10 @@ const page = () => {
 							<p className="text-[16px] lg:text-[20px] leading-8 text-start">
 								{text}
 							</p>
+							{/* <p
+								className="text-[16px] lg:text-[20px] leading-8 text-start"
+								dangerouslySetInnerHTML={{ __html: sanitizedContent }}
+							/> */}
 						</div>
 					);
 				})}
