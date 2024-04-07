@@ -66,40 +66,38 @@ const DailyWord = () => {
 						headers: {
 							Accept: "application/json",
 							"Content-Type": "application/json",
-							"X-CSRFTOKEN":
-								"3MUmN9quKWjasYEFuYq4JJ7br0SsiH4l5gnjg5kQaCVLY3y1qtpNV3Qb2okoIr5K",
 						},
 					}
 				)
 				.then((res) => {
 					if (res.data === 200) {
 						toast.success("Subscribed successfully");
-						reset();
 					} else {
-						throw new Error("Unexpected error occured");
+                  throw new Error("Unexpected error occured");
 					}
 				});
 			console.log(data);
 		} catch (error) {
 			// if (axios.isCancel(error)) {
-			// 	toast.error("Request cancelled. Please try again.");
+            // 	toast.error("Request cancelled. Please try again.");
 			// } else if ((error as AxiosError).response) {
 			// 	const axiosError = error as AxiosError;
 			// 	if (
-			// 		axiosError.response!.status >= 400 &&
+            // 		axiosError.response!.status >= 400 &&
 			// 		axiosError.response!.status < 500
 			// 	) {
 			// 		toast.error("Bad request");
 			// 	} else {
-			// 		toast.error("Server error. Please try again later.");
+            // 		toast.error("Server error. Please try again later.");
 			// 	}
 			// } else if ((error as AxiosError).request) {
 			// 	toast.error("Network error. Please check your internet connection.");
 			// } else {
-			// }
-			toast.success("Subscribed successfully");
-		} finally {
-			setIsLoading(false);
+            // }
+            toast.success("Subscribed successfully");
+         } finally {
+            setIsLoading(false);
+            reset();
 		}
 	};
 

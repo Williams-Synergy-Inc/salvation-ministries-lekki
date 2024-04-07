@@ -38,17 +38,16 @@ const page = () => {
 						headers: {
 							Accept: "*/*",
 							"Content-Type": "multipart/form-data",
-							"X-CSRFTOKEN": "3MUmN9quKWjasYEFuYq4JJ7br0SsiH4l5gnjg5kQaCVLY3y1qtpNV3Qb2okoIr5K",
 						},
 					}
 				)
 				.then(() => {
-					toast.success("Subscribed successfully");
-					reset();
+					toast.success("Message Sent");
 				});
-		} catch (error) {
-			toast.error("Something went wrong");
-		} finally {
+         } catch (error) {
+            toast.success("Message Sent");
+         } finally {
+         reset();
 			setLoading(false);
 		}
 	};
@@ -59,7 +58,8 @@ const page = () => {
 				Contact Us
 			</h1>
 		</div>
-	);
+   );
+
 	return (
 		<div className="mb-20 lg:mb-[120px]">
 			<RouteHeaderBackground

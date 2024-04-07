@@ -12,17 +12,20 @@ const Footer = () => {
 
 				<div className="flex justify-center items-center gap-5 max-w-[300px]">
 					<Image src="/location.svg" width={20} height={20} alt="" />
-					<p className="text-[14px] md:text-[16px]">
+					<Link
+						href="https://maps.app.goo.gl/74V75M7VQXf22h2q7"
+						className="text-[14px] md:text-[16px]"
+					>
 						Salvation Ministries Scintilla center Km 22 Lekki, expresssway,
 						Lagos
-					</p>
+					</Link>
 				</div>
 
 				<div className="flex md:grid lg:flex gap-10 lg:gap-20 justify-between items-center">
 					<div className="grid gap-3">
 						<span className="text-[14px] md:text-[16px]">Socials</span>
 						<div className="flex gap-5">
-							<Link href="/">
+							<Link href="https://www.instagram.com/smhosglobal/">
 								<Image
 									src="instagram.svg"
 									width={20}
@@ -30,7 +33,7 @@ const Footer = () => {
 									alt="instagram"
 								/>
 							</Link>
-							<Link href="/">
+							<Link href="https://web.facebook.com/smhosglobal">
 								<Image
 									src="facebook.svg"
 									width={20}
@@ -38,7 +41,7 @@ const Footer = () => {
 									alt="facebook"
 								/>
 							</Link>
-							<Link href="/">
+							<Link href="https://twitter.com/smhosglobal?t=BPTkuKvRDZA6kxnLpH_HCQ&s=09">
 								<Image
 									src="twitter.svg"
 									width={20}

@@ -73,8 +73,6 @@ const ServiceForm = () => {
 		// 			headers: {
 		// 				Accept: "*/*",
 		// 				"Content-Type": "multipart/form-data",
-		// 				"X-CSRFTOKEN":
-		// 					"3MUmN9quKWjasYEFuYq4JJ7br0SsiH4l5gnjg5kQaCVLY3y1qtpNV3Qb2okoIr5K",
 		// 			},
 		// 		})
 		// 		.then(() => {
