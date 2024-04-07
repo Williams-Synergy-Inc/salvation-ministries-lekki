@@ -44,7 +44,6 @@ const FeaturedSermons = () => {
 			fetchData();
       }, []);
 
-   console.log(sermons)
 
 	return (
 		<div className="flex flex-col text-center mb-[100px]">
@@ -69,7 +68,7 @@ const FeaturedSermons = () => {
 						>
 							<Card className="border-none shadow-none w-fit">
 								<CardHeader className="p-0 mb-2">
-									<Image src={image_url} width={300} height={230} alt={title} />
+									<Image src={image_url} width={300} height={200} alt={title} />
 								</CardHeader>
 								<CardContent className="p-0">
 									<CardTitle className="text-primary-blue text-[16px] mb-1 font-medium">
