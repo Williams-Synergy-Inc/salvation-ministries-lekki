@@ -7,6 +7,11 @@ const nextConfig = {
 				hostname: "salvation-ministries.up.railway.app/v1",
 				port: "",
 			},
+			{
+				protocol: "https",
+				hostname: "res.cloudinary.com",
+				port: "",
+			},
 		],
 	},
 };

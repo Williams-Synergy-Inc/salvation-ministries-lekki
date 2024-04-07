@@ -6,7 +6,6 @@ import {
 	AccordionItem,
 	AccordionTrigger,
 } from "@/components/ui/accordion";
-import { FaqData } from "@/data";
 import { useState, useEffect } from "react";
 
 
