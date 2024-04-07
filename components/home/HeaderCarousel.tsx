@@ -6,11 +6,11 @@ const HeaderCarousel = () => {
 	const _SLIDES = [
 		{
 			key: 1,
-			img: "/carousel/carousel-img-1.png",
+			img: "/carousel-img-1.png",
 		},
 		{
 			key: 2,
-			img: "/carousel/carousel-img-1.png",
+			img: "/carousel-img-1.png",
 		},
 	];
 	return (

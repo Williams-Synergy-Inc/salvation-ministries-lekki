@@ -2,6 +2,7 @@
   "name": "salvation-ministries-lekki",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://smlekki.com/",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
