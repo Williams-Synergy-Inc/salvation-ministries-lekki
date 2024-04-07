@@ -1,38 +1,7 @@
-"use client"
-import { useState, useEffect } from "react";
+"use client";
 import RouteHeaderBackground from "@/components/RouteHeaderBackground";
 import { aboutUsData } from "@/data";
-import { sanitizeHTML } from "@/lib/sanitizeHTML";
-interface IDataItem {
-	content: string;
-}
-
 const page = () => {
-   const [sections, setSections] = useState<IDataItem[]>([]);
-
-   useEffect(() => {
-			const fetchData = async () => {
-				try {
-					const response = await fetch(
-						"https://salvation-ministries.up.railway.app/api/v1/misc/about-us"
-					);
-					if (!response.ok) {
-						throw new Error("Failed to fetch data");
-					}
-					const result = await response.json();
-					setSections(result.data);
-				} catch (error) {
-					setSections([]);
-				} finally {
-					return;
-				}
-			};
-
-			fetchData();
-		}, []);
-
-   const sanitizedContent = sanitizeHTML("content");
-
 	const chidrenContent = (
 		<div className="flex flex-col items-center justify-center text-white gap-2 px-5 text-center translate-y-6">
 			<h1 className="font-bold text-[24px] md:text-[32px] lg:text-[46px]">

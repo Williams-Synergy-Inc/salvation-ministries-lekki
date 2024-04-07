@@ -6,33 +6,7 @@ import RouteHeaderBackground from "@/components/RouteHeaderBackground";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-interface IDataItem {
-	id: string;
-	question: string;
-	answer: string;
-}
 const page = () => {
-	const [resources, setResources] = useState<IDataItem[]>([]);
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const response = await fetch(
-					"https://salvation-ministries.up.railway.app/api/v1/misc/faq/all"
-				);
-				if (!response.ok) {
-					throw new Error("Failed to fetch data");
-				}
-				const result = await response.json();
-				setResources(result.data);
-			} catch (error) {
-				setResources([]);
-			} finally {
-				return;
-			}
-		};
-
-		fetchData();
-	}, []);
 
 	const chidrenContent = (
 		<div className="flex flex-col items-center justify-center text-white gap-4 px-5 text-center translate-y-5">

@@ -1,7 +1,7 @@
 "use client";
 import RouteHeaderBackground from "@/components/RouteHeaderBackground";
 import { contactUsData } from "@/data";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import toast from "react-hot-toast";
 import Loader from "@/lib/Loader";
 import { useState } from "react";

@@ -1,6 +1,5 @@
 "use client";
 import Countdown from "@/lib/countdown/Countdown";
-import axios from "axios";
 import { useState, useEffect } from "react";
 
 const NextLiveService = () => {

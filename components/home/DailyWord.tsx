@@ -16,7 +16,6 @@ interface IDataItem {
 const DailyWord = () => {
    const [bibleQuote, setBibleQuote] = useState<IDataItem | null>(null);
 
-	const [errorQuote, setErrorQuote] = useState<string | null>(null);
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 
 	useEffect(() => {
@@ -31,9 +30,7 @@ const DailyWord = () => {
 				const result = await response.json();
 				setBibleQuote(result.data);
 			} catch (error) {
-				setErrorQuote(
-					error instanceof Error ? error.message : "An unknown error occurred"
-				);
+            return
 			} finally {
 				return;
 			}

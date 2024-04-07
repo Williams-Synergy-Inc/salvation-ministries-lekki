@@ -19,7 +19,6 @@ import Image from "next/image";
 import Loader from "@/lib/Loader";
 import axios from "axios";
 import toast from "react-hot-toast";
-const BASE_URL = "https://salvation-ministries.up.railway.app/api/v1/misc";
 
 interface IDataItem {
 	id: string;
