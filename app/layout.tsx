@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ToasterProvider from "@/lib/ToastProvider";
+import { Analytics } from "@vercel/analytics/react";
 
 const nirmala = localFont({
 	src: "./Nirmala.ttf",
@@ -34,7 +35,8 @@ export default function RootLayout({
 				<Navbar />
 				<main className="overflow-hidden relative">
 					{modals}
-					{children}
+               {children}
+               <Analytics />
 				</main>
 				<Footer />
 			</body>
