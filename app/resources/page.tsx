@@ -49,7 +49,7 @@ const page = () => {
 			<section className="">
 				<Tabs
 					defaultValue="account"
-					className="sm:container w-full pt-10 p-4 md:p-[40px] lg:max-w-5xl lg:px-0  flex flex-col gap-20 lg:gap-28 items-center justify-center"
+					className="sm:container w-full pt-10 p-4 md:p-[40px] lg:max-w-5xl lg:px-0  flex flex-col gap-10 lg:gap-28 items-center justify-center"
 				>
 					<TabsList className="flex gap-10 bg-none">
 						<TabsTrigger asChild value="books" className="bg-none">
